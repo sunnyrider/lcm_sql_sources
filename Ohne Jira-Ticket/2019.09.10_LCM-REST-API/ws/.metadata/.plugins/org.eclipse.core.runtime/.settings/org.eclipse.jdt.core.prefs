@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.builder.resourceCopyExclusionFilter=
+org.eclipse.jdt.core.classpathVariable.ECLIPSE_HOME=C\:/Users/dir14400/OneDrive/Dokumente/Jira/10_Tickets_OKT.2019/Ohne Jira-Ticket/2019.09.10_LCM-REST-API/ws/.metadata/.plugins/org.eclipse.pde.core/.bundle_pool
+org.eclipse.jdt.core.classpathVariable.JRE_LIB=C\:/NoInstall/j2sdk1.6.0_35/jre/lib/rt.jar
+org.eclipse.jdt.core.classpathVariable.JRE_SRC=C\:/NoInstall/j2sdk1.6.0_35/src.zip
+org.eclipse.jdt.core.classpathVariable.JRE_SRCROOT=
+org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=10
+org.eclipse.jdt.core.compiler.compliance=10
+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
+org.eclipse.jdt.core.compiler.release=enabled
+org.eclipse.jdt.core.compiler.source=10

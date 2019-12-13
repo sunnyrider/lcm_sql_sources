@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="8111262126"/>
+		<item key="casesensitive" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="true"/>
+		<list key="findhistory">
+			<item value="4089672869"/>
+			<item value="8111262126"/>
+			<item value="19128510"/>
+			<item value="EA"/>
+			<item value="//        + &quot;"/>
+			<item value="EVT_CREATED"/>
+			<item value="JOIN BSI_X_BANK_INFORMATION"/>
+			<item value="c_1.key"/>
+			<item value="table_12_"/>
+			<item value="iban"/>
+			<item value="table_14_.STATUS_UI"/>
+			<item value="CITY"/>
+			<item value="BSI_X_AUSZAHLUNGEN_NO_SEQ"/>
+			<item value="’"/>
+			<item value="‘"/>
+		</list>
+		<list key="replacehistory">
+			<item value="8111262126"/>
+			<item value="4089672869"/>
+			<item value="adr"/>
+			<item value=""/>
+			<item value="19162700"/>
+			<item value="&apos;"/>
+			<item value="152794"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="284"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_X_ORIGIN" value="1246"/>
+		<item key="DIALOG_Y_ORIGIN" value="235"/>
+	</section>
+</section>

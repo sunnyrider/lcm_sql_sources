@@ -1,0 +1,766 @@
+!SESSION 2019-11-28 15:30:48.983 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=11.0.3
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_CH
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2019-11-28 15:31:48.416
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-11-28 15:31:48.416
+!MESSAGE A conflict occurred for CTRL+SHIFT+V:
+Binding(CTRL+SHIFT+V,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.command.OpenFromClipboard,Open from Clipboard,
+		Opens a Java element or a Java stack trace from clipboard,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@61fe5253,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+V,
+	ParameterizedCommand(Command(org.jkiss.dbeaver.core.edit.paste.special,Erweitertes Einfügen,
+		Einfügen mit zusätzlichen Einstellungen,
+		Category(org.jkiss.dbeaver.core.util,Werkzeuge,Werkzeugebefehle,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7b2a6ed3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-11-28 15:31:48.416
+!MESSAGE A conflict occurred for CTRL+SHIFT+A:
+Binding(CTRL+SHIFT+A,
+	ParameterizedCommand(Command(org.eclipse.pde.ui.openPluginArtifact,Open Plug-in Artifact,
+		Open a plug-in artifact in the manifest editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@28993a77,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+A,
+	ParameterizedCommand(Command(org.jkiss.dbeaver.core.navigator.set.active,Aktives Objekt festlegen,
+		Aktives Objekt festlegen,
+		Category(org.jkiss.dbeaver.core.navigator,Datenbanknavigator,Datenbanknavigatorbefehle,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2c6b36d7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui 4 0 2019-11-28 15:32:17.699
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.ui.internal.intro.impl.model.url.IntroURL.switchToLaunchBar(IntroURL.java:675)
+	at org.eclipse.ui.internal.intro.impl.model.url.IntroURL.doExecute(IntroURL.java:211)
+	at org.eclipse.ui.internal.intro.impl.model.url.IntroURL.lambda$0(IntroURL.java:146)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.ui.internal.intro.impl.model.url.IntroURL.execute(IntroURL.java:146)
+	at org.eclipse.ui.internal.intro.impl.presentations.BrowserIntroPartLocationListener.changing(BrowserIntroPartLocationListener.java:130)
+	at org.eclipse.swt.browser.IE.lambda$6(IE.java:525)
+	at org.eclipse.swt.ole.win32.OleEventTable.sendEvent(OleEventTable.java:58)
+	at org.eclipse.swt.ole.win32.OleEventSink.notifyListener(OleEventSink.java:160)
+	at org.eclipse.swt.ole.win32.OleEventSink.Invoke(OleEventSink.java:128)
+	at org.eclipse.swt.ole.win32.OleEventSink.access$1(OleEventSink.java:105)
+	at org.eclipse.swt.ole.win32.OleEventSink$1.method6(OleEventSink.java:79)
+	at org.eclipse.swt.internal.ole.win32.COMObject.callback6(COMObject.java:122)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2309)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3559)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:628)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:199)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:391)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:246)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1474)
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2019-11-28 15:35:34.907
+!MESSAGE Project 'com.local.lcm339.inkassostate' not found in registry
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2019-11-28 15:36:04.322
+!MESSAGE Error reading Windows registry
+!SUBENTRY 1 org.jkiss.dbeaver.model 2 0 2019-11-28 15:36:04.322
+!MESSAGE 
+!STACK 0
+java.lang.NullPointerException
+	at org.jkiss.dbeaver.utils.WinRegistry.readStringSubKeys(WinRegistry.java:337)
+	at org.jkiss.dbeaver.utils.WinRegistry.readStringSubKeys(WinRegistry.java:162)
+	at org.jkiss.dbeaver.ext.oracle.oci.OCIUtils.findOraHomes(OCIUtils.java:170)
+	at org.jkiss.dbeaver.ext.oracle.oci.OCIUtils.checkOraHomes(OCIUtils.java:68)
+	at org.jkiss.dbeaver.ext.oracle.oci.OCIUtils.getOraHomes(OCIUtils.java:62)
+	at org.jkiss.dbeaver.ext.oracle.OracleDataSourceProvider.getDefaultLocalClientLocation(OracleDataSourceProvider.java:149)
+	at org.jkiss.dbeaver.registry.driver.DriverDescriptor.getDefaultClientLocation(DriverDescriptor.java:1271)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionWizard.getActiveDataSource(ConnectionWizard.java:114)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPageSettings.getActiveDataSource(ConnectionPageSettings.java:292)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPageSettings.getActiveDataSource(ConnectionPageSettings.java:1)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPageAbstract.createSavePasswordButton(ConnectionPageAbstract.java:226)
+	at org.jkiss.dbeaver.ext.oracle.views.OracleConnectionPage.createSecurityGroup(OracleConnectionPage.java:310)
+	at org.jkiss.dbeaver.ext.oracle.views.OracleConnectionPage.createControl(OracleConnectionPage.java:115)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPageSettings.createProviderPage(ConnectionPageSettings.java:211)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPageSettings.activatePage(ConnectionPageSettings.java:108)
+	at org.jkiss.dbeaver.ui.dialogs.ActiveWizardPage.setVisible(ActiveWizardPage.java:57)
+	at org.eclipse.jface.wizard.WizardDialog.updateForPage(WizardDialog.java:1196)
+	at org.eclipse.jface.wizard.WizardDialog.lambda$3(WizardDialog.java:1166)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.jface.wizard.WizardDialog.showPage(WizardDialog.java:1166)
+	at org.eclipse.jface.wizard.WizardDialog.nextPressed(WizardDialog.java:861)
+	at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:410)
+	at org.eclipse.jface.dialogs.Dialog.lambda$0(Dialog.java:622)
+	at org.eclipse.swt.events.SelectionListener$1.widgetSelected(SelectionListener.java:84)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:252)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4145)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1055)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3958)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3561)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:821)
+	at org.eclipse.jface.window.Window.open(Window.java:797)
+	at org.eclipse.ui.internal.actions.NewWizardShortcutAction.run(NewWizardShortcutAction.java:136)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:476)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:568)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:400)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4145)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1055)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3958)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3561)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:628)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:199)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:391)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:246)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1474)
+
+!ENTRY org.eclipse.core.expressions 4 201 2019-11-28 15:47:01.105
+!MESSAGE No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+!STACK 1
+org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+	at org.eclipse.core.internal.expressions.TypeExtensionManager.getProperty(TypeExtensionManager.java:130)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:100)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:55)
+	at org.eclipse.core.internal.expressions.AndExpression.evaluate(AndExpression.java:34)
+	at org.eclipse.ui.internal.dialogs.RegistryPageContributor.failsEnablement(RegistryPageContributor.java:309)
+	at org.eclipse.ui.internal.dialogs.RegistryPageContributor.isApplicableTo(RegistryPageContributor.java:251)
+	at org.eclipse.ui.internal.dialogs.PropertyPageContributorManager.getApplicableContributors(PropertyPageContributorManager.java:218)
+	at org.eclipse.ui.dialogs.PreferencesUtil.hasPropertiesContributors(PreferencesUtil.java:305)
+	at org.jkiss.dbeaver.ui.navigator.NavigatorUtils.lambda$0(NavigatorUtils.java:223)
+	at org.eclipse.jface.action.MenuManager.fireAboutToShow(MenuManager.java:342)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:473)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:468)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:259)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4145)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1055)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1060)
+	at org.eclipse.swt.widgets.Control.WM_INITMENUPOPUP(Control.java:5148)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4797)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:348)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1502)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2162)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4784)
+	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:253)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3999)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3555)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:628)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:199)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:391)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:246)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1474)
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2019-11-28 15:47:01.105
+!MESSAGE No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+
+!ENTRY org.eclipse.jface 2 0 2019-11-28 15:47:31.401
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-11-28 15:47:31.401
+!MESSAGE A conflict occurred for CTRL+D:
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line,Delete Line,
+		Delete a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2544f6f1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.jkiss.dbeaver.core.navigator.bookmark.add,Lesezeichen hinufügen,
+		Lesezeichen hinufügen,
+		Category(org.jkiss.dbeaver.core.navigator,Datenbanknavigator,Datenbanknavigatorbefehle,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@12710aa4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.jkiss.dbeaver.ui.context.navigator,,,system)
+
+!ENTRY org.eclipse.ui.workbench 4 0 2019-11-28 16:13:48.153
+!MESSAGE Invalid thread access
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4595)
+	at org.eclipse.swt.SWT.error(SWT.java:4510)
+	at org.eclipse.swt.SWT.error(SWT.java:4481)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:451)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:369)
+	at org.eclipse.swt.widgets.Decorations.getText(Decorations.java:683)
+	at org.eclipse.ui.internal.WorkbenchWindowConfigurer.getTitle(WorkbenchWindowConfigurer.java:271)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor.recomputeTitle(IDEWorkbenchWindowAdvisor.java:435)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor.access$2(IDEWorkbenchWindowAdvisor.java:433)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor$1.propertyChanged(IDEWorkbenchWindowAdvisor.java:116)
+	at org.eclipse.ui.part.WorkbenchPart.firePropertyChange(WorkbenchPart.java:122)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.firePropertyChange(AbstractTextEditor.java:6345)
+	at org.eclipse.ui.part.WorkbenchPart.setTitle(WorkbenchPart.java:288)
+	at org.eclipse.ui.part.EditorPart.setDefaultTitle(EditorPart.java:288)
+	at org.eclipse.ui.part.WorkbenchPart.setPartName(WorkbenchPart.java:368)
+	at org.eclipse.ui.part.EditorPart.setPartName(EditorPart.java:263)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor.setDataSourceContainer(SQLEditor.java:323)
+	at org.jkiss.dbeaver.ui.perspective.DataSourceManagementToolbar$4.run(DataSourceManagementToolbar.java:627)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2019-11-28 16:19:48.470
+!MESSAGE No repository found at http://download.eclipse.org/usssdk/drops/nightly/N923.
+
+!ENTRY org.eclipse.ui.workbench 4 0 2019-11-28 17:38:13.854
+!MESSAGE Invalid thread access
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4595)
+	at org.eclipse.swt.SWT.error(SWT.java:4510)
+	at org.eclipse.swt.SWT.error(SWT.java:4481)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:451)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:369)
+	at org.eclipse.swt.widgets.Decorations.getText(Decorations.java:683)
+	at org.eclipse.ui.internal.WorkbenchWindowConfigurer.getTitle(WorkbenchWindowConfigurer.java:271)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor.recomputeTitle(IDEWorkbenchWindowAdvisor.java:435)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor.access$2(IDEWorkbenchWindowAdvisor.java:433)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor$1.propertyChanged(IDEWorkbenchWindowAdvisor.java:116)
+	at org.eclipse.ui.part.WorkbenchPart.firePropertyChange(WorkbenchPart.java:122)
+	at org.eclipse.ui.texteditor.AbstractTextEditor.firePropertyChange(AbstractTextEditor.java:6345)
+	at org.eclipse.ui.part.WorkbenchPart.setTitle(WorkbenchPart.java:288)
+	at org.eclipse.ui.part.EditorPart.setDefaultTitle(EditorPart.java:288)
+	at org.eclipse.ui.part.WorkbenchPart.setPartName(WorkbenchPart.java:368)
+	at org.eclipse.ui.part.EditorPart.setPartName(EditorPart.java:263)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor.setDataSourceContainer(SQLEditor.java:323)
+	at org.jkiss.dbeaver.ui.perspective.DataSourceManagementToolbar$4.run(DataSourceManagementToolbar.java:627)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jkiss.dbeaver.model 4 0 2019-11-28 20:09:59.662
+!MESSAGE Can't close statement
+!SUBENTRY 1 org.jkiss.dbeaver.model 4 0 2019-11-28 20:09:59.662
+!MESSAGE Getrennte Verbindung
+!STACK 0
+java.sql.SQLRecoverableException: Getrennte Verbindung
+	at oracle.jdbc.driver.PhysicalConnection.needLine(PhysicalConnection.java:3305)
+	at oracle.jdbc.driver.OracleStatement.closeOrCache(OracleStatement.java:1409)
+	at oracle.jdbc.driver.OracleStatement.close(OracleStatement.java:1392)
+	at oracle.jdbc.driver.OracleStatementWrapper.close(OracleStatementWrapper.java:119)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.close(OraclePreparedStatementWrapper.java:96)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.close(JDBCStatementImpl.java:512)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCPreparedStatementImpl.close(JDBCPreparedStatementImpl.java:97)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.loadChildren(JDBCStructCache.java:176)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.getChildren(JDBCStructCache.java:222)
+	at org.jkiss.dbeaver.ext.oracle.model.OracleTableBase.getAttributes(OracleTableBase.java:217)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.makeProposalsFromChildren(SQLCompletionAnalyzer.java:534)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.runAnalyzer(SQLCompletionAnalyzer.java:157)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:85)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:1)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionProcessor$ProposalSearchJob.run(SQLCompletionProcessor.java:367)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jkiss.dbeaver.model 4 0 2019-11-28 20:10:00.053
+!MESSAGE Operation failed. Retry count remains = 1
+!SUBENTRY 1 org.jkiss.dbeaver.model 4 0 2019-11-28 20:10:00.053
+!MESSAGE SQL-Fehler [17002] [08006]: I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!SUBENTRY 2 org.jkiss.dbeaver.model 4 0 2019-11-28 20:10:00.053
+!MESSAGE I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!STACK 0
+java.sql.SQLRecoverableException: I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:779)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3640)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1384)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3752)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1079)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCPreparedStatementImpl.execute(JDBCPreparedStatementImpl.java:260)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCPreparedStatementImpl.executeStatement(JDBCPreparedStatementImpl.java:204)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.loadChildren(JDBCStructCache.java:99)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.getChildren(JDBCStructCache.java:222)
+	at org.jkiss.dbeaver.ext.oracle.model.OracleTableBase.getAttributes(OracleTableBase.java:217)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.makeProposalsFromChildren(SQLCompletionAnalyzer.java:534)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.runAnalyzer(SQLCompletionAnalyzer.java:157)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:85)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:1)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionProcessor$ProposalSearchJob.run(SQLCompletionProcessor.java:367)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:113)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:79)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:50)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:463)
+	at oracle.net.nt.TimeoutSocketChannel.write(TimeoutSocketChannel.java:207)
+	at oracle.net.ns.NIOPacket.writeToSocketChannel(NIOPacket.java:308)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:182)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:133)
+	at oracle.jdbc.driver.T4CMAREngineNIO.flush(T4CMAREngineNIO.java:741)
+	at oracle.jdbc.driver.T4CMAREngineNIO.prepareForUnmarshall(T4CMAREngineNIO.java:754)
+	at oracle.jdbc.driver.T4CMAREngineNIO.unmarshalUB1(T4CMAREngineNIO.java:427)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:394)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:253)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:86)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:765)
+	... 19 more
+!SUBENTRY 3 org.jkiss.dbeaver.model 4 0 2019-11-28 20:10:00.053
+!MESSAGE Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!STACK 0
+java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:113)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:79)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:50)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:463)
+	at oracle.net.nt.TimeoutSocketChannel.write(TimeoutSocketChannel.java:207)
+	at oracle.net.ns.NIOPacket.writeToSocketChannel(NIOPacket.java:308)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:182)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:133)
+	at oracle.jdbc.driver.T4CMAREngineNIO.flush(T4CMAREngineNIO.java:741)
+	at oracle.jdbc.driver.T4CMAREngineNIO.prepareForUnmarshall(T4CMAREngineNIO.java:754)
+	at oracle.jdbc.driver.T4CMAREngineNIO.unmarshalUB1(T4CMAREngineNIO.java:427)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:394)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:253)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:86)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:765)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3640)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1384)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3752)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1079)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCPreparedStatementImpl.execute(JDBCPreparedStatementImpl.java:260)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCPreparedStatementImpl.executeStatement(JDBCPreparedStatementImpl.java:204)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.loadChildren(JDBCStructCache.java:99)
+	at org.jkiss.dbeaver.model.impl.jdbc.cache.JDBCStructCache.getChildren(JDBCStructCache.java:222)
+	at org.jkiss.dbeaver.ext.oracle.model.OracleTableBase.getAttributes(OracleTableBase.java:217)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.makeProposalsFromChildren(SQLCompletionAnalyzer.java:534)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.runAnalyzer(SQLCompletionAnalyzer.java:157)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:85)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionAnalyzer.run(SQLCompletionAnalyzer.java:1)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.syntax.SQLCompletionProcessor$ProposalSearchJob.run(SQLCompletionProcessor.java:367)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.expressions 4 201 2019-11-28 20:27:55.310
+!MESSAGE No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+!STACK 1
+org.eclipse.core.runtime.CoreException: No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+	at org.eclipse.core.internal.expressions.TypeExtensionManager.getProperty(TypeExtensionManager.java:130)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:100)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:55)
+	at org.eclipse.core.internal.expressions.AndExpression.evaluate(AndExpression.java:34)
+	at org.eclipse.ui.internal.dialogs.RegistryPageContributor.failsEnablement(RegistryPageContributor.java:309)
+	at org.eclipse.ui.internal.dialogs.RegistryPageContributor.isApplicableTo(RegistryPageContributor.java:251)
+	at org.eclipse.ui.internal.dialogs.PropertyPageContributorManager.getApplicableContributors(PropertyPageContributorManager.java:218)
+	at org.eclipse.ui.dialogs.PreferencesUtil.hasPropertiesContributors(PreferencesUtil.java:305)
+	at org.jkiss.dbeaver.ui.navigator.NavigatorUtils.lambda$0(NavigatorUtils.java:223)
+	at org.eclipse.jface.action.MenuManager.fireAboutToShow(MenuManager.java:342)
+	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:473)
+	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:468)
+	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:500)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:259)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4145)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1055)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1060)
+	at org.eclipse.swt.widgets.Control.WM_INITMENUPOPUP(Control.java:5148)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4797)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:348)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1502)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2162)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4784)
+	at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+	at org.eclipse.swt.widgets.Menu._setVisible(Menu.java:253)
+	at org.eclipse.swt.widgets.Display.runPopups(Display.java:3999)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3555)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:628)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:199)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:391)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:246)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1474)
+!SUBENTRY 1 org.eclipse.core.expressions 4 201 2019-11-28 20:27:55.310
+!MESSAGE No property tester contributes a property org.eclipse.wst.jsdt.chromium.debug.core.isJsFile to type class org.jkiss.dbeaver.model.navigator.DBNResource
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2019-11-28 20:28:17.469
+!MESSAGE Datasource user 'org.jkiss.dbeaver.ui.editors.sql.SQLEditor@2ecf4dc5' already registered in datasource 'PROD'
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2019-11-29 00:40:30.616
+!MESSAGE Can't read execution warnings
+!SUBENTRY 1 org.jkiss.dbeaver.model 2 0 2019-11-29 00:40:30.616
+!MESSAGE SQL-Fehler [17008] [08003]: Getrennte Verbindung
+!SUBENTRY 2 org.jkiss.dbeaver.model 2 0 2019-11-29 00:40:30.616
+!MESSAGE Getrennte Verbindung
+!STACK 0
+java.sql.SQLRecoverableException: Getrennte Verbindung
+	at oracle.jdbc.driver.OracleStatement.ensureOpen(OracleStatement.java:4114)
+	at oracle.jdbc.driver.OracleStatement.getWarnings(OracleStatement.java:3113)
+	at oracle.jdbc.driver.OracleStatementWrapper.getWarnings(OracleStatementWrapper.java:348)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.getWarnings(JDBCStatementImpl.java:582)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.getStatementWarnings(JDBCStatementImpl.java:612)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:524)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$0(SQLQueryJob.java:402)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:400)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:839)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:2696)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:102)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:100)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:30.631
+!MESSAGE Can't close statement
+!SUBENTRY 1 org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:30.631
+!MESSAGE Getrennte Verbindung
+!STACK 0
+java.sql.SQLRecoverableException: Getrennte Verbindung
+	at oracle.jdbc.driver.PhysicalConnection.needLine(PhysicalConnection.java:3305)
+	at oracle.jdbc.driver.OracleStatement.closeOrCache(OracleStatement.java:1409)
+	at oracle.jdbc.driver.OracleStatement.close(OracleStatement.java:1392)
+	at oracle.jdbc.driver.OracleStatementWrapper.close(OracleStatementWrapper.java:119)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.close(JDBCStatementImpl.java:512)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.closeStatement(SQLQueryJob.java:797)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:530)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$0(SQLQueryJob.java:402)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:400)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:839)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:2696)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:102)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:100)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:31.522
+!MESSAGE Operation failed. Retry count remains = 1
+!SUBENTRY 1 org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:31.522
+!MESSAGE SQL-Fehler [17002] [08006]: I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!SUBENTRY 2 org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:31.522
+!MESSAGE I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!STACK 0
+java.sql.SQLRecoverableException: I/O-Fehler: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at oracle.jdbc.driver.T4CStatement.executeForDescribe(T4CStatement.java:738)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099)
+	at oracle.jdbc.driver.OracleStatement.doScrollExecuteCommon(OracleStatement.java:4699)
+	at oracle.jdbc.driver.OracleStatement.doScrollStmtExecuteQuery(OracleStatement.java:4815)
+	at oracle.jdbc.driver.OracleStatement.executeInternal(OracleStatement.java:1758)
+	at oracle.jdbc.driver.OracleStatement.execute(OracleStatement.java:1709)
+	at oracle.jdbc.driver.OracleStatementWrapper.execute(OracleStatementWrapper.java:300)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.execute(JDBCStatementImpl.java:344)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.executeStatement(JDBCStatementImpl.java:137)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:458)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$0(SQLQueryJob.java:402)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:400)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:839)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:2696)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:102)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:100)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:113)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:79)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:50)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:463)
+	at oracle.net.nt.TimeoutSocketChannel.write(TimeoutSocketChannel.java:207)
+	at oracle.net.ns.NIOPacket.writeToSocketChannel(NIOPacket.java:308)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:182)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:133)
+	at oracle.jdbc.driver.T4CMAREngineNIO.flush(T4CMAREngineNIO.java:741)
+	at oracle.jdbc.driver.T4CMAREngineNIO.prepareForUnmarshall(T4CMAREngineNIO.java:754)
+	at oracle.jdbc.driver.T4CMAREngineNIO.unmarshalUB1(T4CMAREngineNIO.java:427)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:394)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:213)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:37)
+	at oracle.jdbc.driver.T4CStatement.executeForDescribe(T4CStatement.java:724)
+	... 20 more
+!SUBENTRY 3 org.jkiss.dbeaver.model 4 0 2019-11-29 00:40:31.522
+!MESSAGE Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+!STACK 0
+java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:113)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:79)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:50)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:463)
+	at oracle.net.nt.TimeoutSocketChannel.write(TimeoutSocketChannel.java:207)
+	at oracle.net.ns.NIOPacket.writeToSocketChannel(NIOPacket.java:308)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:182)
+	at oracle.net.ns.NIONSDataChannel.writeDataToSocketChannel(NIONSDataChannel.java:133)
+	at oracle.jdbc.driver.T4CMAREngineNIO.flush(T4CMAREngineNIO.java:741)
+	at oracle.jdbc.driver.T4CMAREngineNIO.prepareForUnmarshall(T4CMAREngineNIO.java:754)
+	at oracle.jdbc.driver.T4CMAREngineNIO.unmarshalUB1(T4CMAREngineNIO.java:427)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:394)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:213)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:37)
+	at oracle.jdbc.driver.T4CStatement.executeForDescribe(T4CStatement.java:724)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099)
+	at oracle.jdbc.driver.OracleStatement.doScrollExecuteCommon(OracleStatement.java:4699)
+	at oracle.jdbc.driver.OracleStatement.doScrollStmtExecuteQuery(OracleStatement.java:4815)
+	at oracle.jdbc.driver.OracleStatement.executeInternal(OracleStatement.java:1758)
+	at oracle.jdbc.driver.OracleStatement.execute(OracleStatement.java:1709)
+	at oracle.jdbc.driver.OracleStatementWrapper.execute(OracleStatementWrapper.java:300)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.execute(JDBCStatementImpl.java:344)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.executeStatement(JDBCStatementImpl.java:137)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:458)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$0(SQLQueryJob.java:402)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:400)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:839)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:2696)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:102)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:100)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2019-12-02 14:21:29.991
+!MESSAGE Some data source listeners are still registered: [org.jkiss.dbeaver.ui.editors.sql.SQLEditor@2ecf4dc5]
+!SESSION 2019-12-02 14:30:08.873 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=11.0.3
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_CH
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2019-12-02 14:32:56.139
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-12-02 14:32:56.139
+!MESSAGE A conflict occurred for CTRL+SHIFT+V:
+Binding(CTRL+SHIFT+V,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.command.OpenFromClipboard,Open from Clipboard,
+		Opens a Java element or a Java stack trace from clipboard,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5a07088b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+V,
+	ParameterizedCommand(Command(org.jkiss.dbeaver.core.edit.paste.special,Erweitertes Einfügen,
+		Einfügen mit zusätzlichen Einstellungen,
+		Category(org.jkiss.dbeaver.core.util,Werkzeuge,Werkzeugebefehle,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@32f35739,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-12-02 14:32:56.139
+!MESSAGE A conflict occurred for CTRL+SHIFT+A:
+Binding(CTRL+SHIFT+A,
+	ParameterizedCommand(Command(org.eclipse.pde.ui.openPluginArtifact,Open Plug-in Artifact,
+		Open a plug-in artifact in the manifest editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@70c6860,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+A,
+	ParameterizedCommand(Command(org.jkiss.dbeaver.core.navigator.set.active,Aktives Objekt festlegen,
+		Aktives Objekt festlegen,
+		Category(org.jkiss.dbeaver.core.navigator,Datenbanknavigator,Datenbanknavigatorbefehle,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7ef6a063,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.jkiss.dbeaver.model 4 0 2019-12-02 15:19:17.713
+!MESSAGE SQL-Fehler [942] [42000]: ORA-00942: Tabelle oder View nicht vorhanden
+
+!SUBENTRY 1 org.jkiss.dbeaver.model 4 0 2019-12-02 15:19:17.713
+!MESSAGE Error : 942, Position : 430, Sql = SELECT 
+	COL.COLLECTION_NR,
+	COL.STATUS_UID,
+	uc_status.TEXT Status,
+	COL.AGREEMENT_UID,
+	uc_agm.TEXT Agreement,
+	COL.COLLECTION_COMPANY_UID,
+	uc_collcmp.TEXT Collection_Company
+FROM BSI_X_COLLECTION col
+INNER JOIN BSI_UC_TEXT uc_status ON uc_status.UC_UID = COL.STATUS_UID AND UC_status.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_agm ON uc_agm.UC_UID = COL.AGREEMENT_UID AND uc_agm.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_collcmp ON uc_collcmp.UC_UID = COL.COLLECTION_COMPANY_UID AND uc_collcmp.LANGUAGE_UID = '246'
+WHERE COL.STATUS_UID NOT IN (138150)
+AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+AND COL.COLLECTION_COMPANY_UID = 0
+, OriginalSql = SELECT 
+	COL.COLLECTION_NR,
+	COL.STATUS_UID,
+	uc_status.TEXT Status,
+	COL.AGREEMENT_UID,
+	uc_agm.TEXT Agreement,
+	COL.COLLECTION_COMPANY_UID,
+	uc_collcmp.TEXT Collection_Company
+FROM BSI_X_COLLECTION col
+INNER JOIN BSI_UC_TEXT uc_status ON uc_status.UC_UID = COL.STATUS_UID AND UC_status.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_agm ON uc_agm.UC_UID = COL.AGREEMENT_UID AND uc_agm.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_collcmp ON uc_collcmp.UC_UID = COL.COLLECTION_COMPANY_UID AND uc_collcmp.LANGUAGE_UID = '246'
+WHERE COL.STATUS_UID NOT IN (138150)
+AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+AND COL.COLLECTION_COMPANY_UID = 0
+, Error Msg = ORA-00942: Tabelle oder View nicht vorhanden
+
+!STACK 0
+Error : 942, Position : 430, Sql = SELECT 
+	COL.COLLECTION_NR,
+	COL.STATUS_UID,
+	uc_status.TEXT Status,
+	COL.AGREEMENT_UID,
+	uc_agm.TEXT Agreement,
+	COL.COLLECTION_COMPANY_UID,
+	uc_collcmp.TEXT Collection_Company
+FROM BSI_X_COLLECTION col
+INNER JOIN BSI_UC_TEXT uc_status ON uc_status.UC_UID = COL.STATUS_UID AND UC_status.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_agm ON uc_agm.UC_UID = COL.AGREEMENT_UID AND uc_agm.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_collcmp ON uc_collcmp.UC_UID = COL.COLLECTION_COMPANY_UID AND uc_collcmp.LANGUAGE_UID = '246'
+WHERE COL.STATUS_UID NOT IN (138150)
+AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+AND COL.COLLECTION_COMPANY_UID = 0
+, OriginalSql = SELECT 
+	COL.COLLECTION_NR,
+	COL.STATUS_UID,
+	uc_status.TEXT Status,
+	COL.AGREEMENT_UID,
+	uc_agm.TEXT Agreement,
+	COL.COLLECTION_COMPANY_UID,
+	uc_collcmp.TEXT Collection_Company
+FROM BSI_X_COLLECTION col
+INNER JOIN BSI_UC_TEXT uc_status ON uc_status.UC_UID = COL.STATUS_UID AND UC_status.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_agm ON uc_agm.UC_UID = COL.AGREEMENT_UID AND uc_agm.LANGUAGE_UID = '246'
+INNER JOIN BSI_UC_TEXT uc_collcmp ON uc_collcmp.UC_UID = COL.COLLECTION_COMPANY_UID AND uc_collcmp.LANGUAGE_UID = '246'
+WHERE COL.STATUS_UID NOT IN (138150)
+AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+AND COL.COLLECTION_COMPANY_UID = 0
+, Error Msg = ORA-00942: Tabelle oder View nicht vorhanden
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:498)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:446)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1052)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:537)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:213)
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:37)
+	at oracle.jdbc.driver.T4CStatement.executeForDescribe(T4CStatement.java:724)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099)
+	at oracle.jdbc.driver.OracleStatement.doScrollExecuteCommon(OracleStatement.java:4699)
+	at oracle.jdbc.driver.OracleStatement.doScrollStmtExecuteQuery(OracleStatement.java:4815)
+	at oracle.jdbc.driver.OracleStatement.executeInternal(OracleStatement.java:1758)
+	at oracle.jdbc.driver.OracleStatement.execute(OracleStatement.java:1709)
+	at oracle.jdbc.driver.OracleStatementWrapper.execute(OracleStatementWrapper.java:300)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.execute(JDBCStatementImpl.java:344)
+	at org.jkiss.dbeaver.model.impl.jdbc.exec.JDBCStatementImpl.executeStatement(JDBCStatementImpl.java:137)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeStatement(SQLQueryJob.java:458)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.lambda$0(SQLQueryJob.java:402)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.executeSingleQuery(SQLQueryJob.java:400)
+	at org.jkiss.dbeaver.ui.editors.sql.execute.SQLQueryJob.extractData(SQLQueryJob.java:839)
+	at org.jkiss.dbeaver.ui.editors.sql.SQLEditor$QueryResultsContainer.readData(SQLEditor.java:2696)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.lambda$0(ResultSetJobDataRead.java:102)
+	at org.jkiss.dbeaver.model.DBUtils.tryExecuteRecover(DBUtils.java:1679)
+	at org.jkiss.dbeaver.ui.controls.resultset.ResultSetJobDataRead.run(ResultSetJobDataRead.java:100)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2019-12-02 15:19:59.773
+!MESSAGE No repository found at http://download.eclipse.org/usssdk/drops/nightly/N923.

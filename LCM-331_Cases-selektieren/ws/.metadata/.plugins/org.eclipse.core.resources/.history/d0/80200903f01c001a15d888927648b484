@@ -1,0 +1,166 @@
+WITH pre_select AS 
+(
+	SELECT
+		cse.EVT_END,
+		cse.EMAIL_ADDRESS,
+		cse.FAX_NO,
+		cse.PHONE_NO,
+		cse.EVT_START,
+		cse.PERSON_NR,
+		cse.CASE_FRAME_NR,
+		cse.X_COMPANY_NR,
+		PRSOPEN.FIRST_NAME prs_open_first,
+		PRSOPEN.LAST_NAME prs_open_last,
+		PRSCLOSE.FIRST_NAME prs_close_first,
+		PRSCLOSE.LAST_NAME prs_close_last,
+		uc_origin.TEXT origin_channel_text,
+		uc_process.TEXT process_text,
+		CMP.COMPANY_NO,
+		CMP.X_COMPLEX_NO,
+		CMP.NAME1,
+		cmc.COMMUNICATION_NR,
+		cmc.DISPLAY_NAME,
+		cmc.TEXT_LOB
+		
+	FROM BSI_CASE CSE
+		INNER JOIN BSI_COMMUNICATION CMC
+			INNER JOIN BSI_DOCUMENT BDOC 
+			ON BDOC.ITEM_KEY0_NR = CMC.COMMUNICATION_NR
+		ON cmc.CASE_FRAME_NR = CSE.CASE_FRAME_NR
+	
+		INNER JOIN BSI_COMPANY cmp ON CMP.COMPANY_NR = cse.x_company_nr
+		
+	    INNER JOIN BSICRM.BSI_PERSON prsopen ON prsopen.PERSON_NR = CSE.CREATE_USER_NR
+	    INNER JOIN BSICRM.BSI_PERSON prsclose ON prsclose.PERSON_NR = CSE.X_CLOSE_USER_NR
+	    INNER JOIN BSICRM.BSI_UC_TEXT uc_origin ON uc_origin.UC_UID = CSE.CHANNEL_UID AND uc_origin.LANGUAGE_UID = 1303
+		INNER JOIN BSICRM.BSI_UC_TEXT uc_process ON uc_process.UC_UID = CSE.PROCESS_UID AND uc_process.LANGUAGE_UID = 246
+	WHERE CMC.ORIGIN_UID NOT IN (105356, 143891)  -- 105356	Marketing, 143891	National Report
+	AND CSE.PHONE_NO IS NOT NULL
+)
+
+SELECT 
+--	DISTINCT
+
+	psel.X_COMPLEX_NO,
+	to_char(PSEL.EVT_END, 'dd.mm.yyyy') closed_date,
+	PSEL.EMAIL_ADDRESS contact_email,
+	PSEL.FAX_NO contact_fax,
+
+	CASE WHEN PSEL.PHONE_NO LIKE '%+4175%' 
+		OR PSEL.PHONE_NO LIKE '%+4176%'  
+		OR PSEL.PHONE_NO LIKE '%+4177%'  
+		OR PSEL.PHONE_NO LIKE '%+4178%'  
+		OR PSEL.PHONE_NO LIKE '%+4179%' THEN  
+		PSEL.PHONE_NO
+	ELSE 
+		NULL
+	END contact_mobile,
+
+	CASE WHEN PSEL.PHONE_NO LIKE '%+4175%' 
+		OR PSEL.PHONE_NO LIKE '%+4176%'  
+		OR PSEL.PHONE_NO LIKE '%+4177%' 
+		OR PSEL.PHONE_NO LIKE '%+4178%' 
+		OR PSEL.PHONE_NO LIKE '%+4179%'  THEN
+		NULL
+	ELSE 
+		PSEL.PHONE_NO           
+	END contact_phone,
+
+	to_char(PSEL.EVT_START, 'dd.mm.yyyy') created_date,
+
+	1 closed,
+	psel.origin_channel_text case_origin,
+	psel.process_text case_reason,
+	CASE WHEN psel.process_text = 'Beschwerde' THEN
+		'Beschwerde'
+	ELSE
+		'other'
+	END record_type,
+	'Closed' Status,
+
+	PSEL.DISPLAY_NAME subject,
+	psel.COMPANY_NO company,
+	REPLACE(psel.NAME1, chr(13), '') name,
+	PSEL.PERSON_NR LCM_Contact_Number,
+
+	CASE WHEN psel.prs_open_first IS NOT NULL THEN 
+		REPLACE(REPLACE(psel.prs_open_first,'"',''''),'''''','''')
+		|| ' ' || 
+		REPLACE(REPLACE(psel.prs_open_last,'"',''''),'''''','''')
+	WHEN psel.prs_open_last IS NULL THEN
+		''
+	ELSE 
+		REPLACE(REPLACE(psel.prs_open_last,'"',''''),'''''','''')
+	END LCM_User_opened_Case,
+	CASE WHEN psel.prs_close_first IS NOT NULL THEN 
+		REPLACE(REPLACE(psel.prs_close_first,'"',''''),'''''','''')
+		|| ' ' || 
+		REPLACE(REPLACE(psel.prs_close_last,'"',''''),'''''','''')
+	WHEN psel.prs_close_last IS NULL THEN
+		''
+	ELSE 
+		REPLACE(REPLACE(psel.prs_close_last,'"',''''),'''''','''')
+	END LCM_User_closed_CASE,
+
+	case_join.max_case_no case_number,
+
+	CASE WHEN PSEL.TEXT_LOB IS NOT NULL THEN
+		CASE WHEN DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) > 4000 THEN 
+			'(4000 characters from total ' || DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) || ')' || 
+			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(PSEL.TEXT_LOB, 1000, 1), CHR(13), ' '), 
+				chr(10), ' '), 
+				chr(11), ' '),
+				chr(9), ' '), 
+				chr(32), ' ')
+		ELSE 
+			'(' || DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) || ' characters)' || 
+			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(PSEL.TEXT_LOB, 1000, 1), CHR(13), ' '), 
+				chr(10), ' '), 
+				chr(11), ' '),
+				chr(9), ' '), 
+				chr(32), ' ')
+		END 
+	ELSE
+		NULL
+	END LCM_Communcation_Text_Part1,
+	CASE WHEN PSEL.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) > 1000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(PSEL.TEXT_LOB, 1000, 1001), CHR(13), ' '), 
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part2,
+	CASE WHEN PSEL.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) > 2000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(PSEL.TEXT_LOB, 1000, 2001), CHR(13), ' '), 
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part3,
+	CASE WHEN PSEL.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(PSEL.TEXT_LOB) > 3000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(PSEL.TEXT_LOB, 1000, 3001), CHR(13), ' '),
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part4,
+	(
+		SELECT
+			SUBSTR(LISTAGG(dbms_lob.substr(XDOC.X_LOCATION_LOB, 2000, 1), '|') within GROUP(ORDER BY XDOC.X_LOCATION_LOB), 0, 3000)
+		FROM BSI_DOCUMENT xdoc
+		WHERE XDOC.ITEM_KEY0_NR = PSEL.COMMUNICATION_NR
+	) lcm_document_link
+FROM pre_select psel
+	INNER JOIN (
+		SELECT MAX(ICSE.CASE_NO) max_case_no,
+		ICSE.CASE_FRAME_NR
+		FROM BSI_CASE icse
+		GROUP BY ICSE.CASE_FRAME_NR
+	) case_join ON case_join.CASE_FRAME_NR = psel.CASE_FRAME_NR
+;

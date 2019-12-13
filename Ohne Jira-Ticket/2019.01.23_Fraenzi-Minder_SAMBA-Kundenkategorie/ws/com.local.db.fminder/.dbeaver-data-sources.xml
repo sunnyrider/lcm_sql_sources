@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="oracle_thin-1687b46d220-485ea20d7f871560" provider="oracle" driver="oracle_thin" name="Oracle - CRMDEV.ltvintra.ltv.ch" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="cl01s021-scan.ltvintra.ltv.ch" port="1521" server="" database="CRMDEV.ltvintra.ltv.ch" url="jdbc:oracle:thin:@//cl01s021-scan.ltvintra.ltv.ch:1521/CRMDEV.ltvintra.ltv.ch" user="bsicrm" password="ERcPI1NOVAFl8w==" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>

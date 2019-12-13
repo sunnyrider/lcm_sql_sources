@@ -1,0 +1,39 @@
+UPDATE nxdsmp.customerimage 
+SET FILEREF='\\NX01\nxClient\Scripts\openarchive.vbs ' || FILEREF WHERE FILEREF LIKE '\\NX01\Archive\2018%'
+;
+
+UPDATE BSI_DOCUMENT SET X_LOCATION_LOB = '\\NX01\nxClient\Scripts\openarchive.vbs ' || X_LOCATION_LOB
+AND dbms_lob.instr(dbms_lob.substr(LOWER(DOC.X_LOCATION_LOB), 30, 2), LOWER('Archive\2018')) > 0
+;
+
+UPDATE BSI_DOCUMENT SET X_LOCATION_LOB = REPLACE(dbms_lob.substr(X_LOCATION_LOB, 1000, 1), 'SG1473P', 'NX01')
+;
+
+UPDATE BSI_DOCUMENT doc SET X_LOCATION_LOB = REPLACE(dbms_lob.substr(DOC.X_LOCATION_LOB, 1000, 1), '\SG1473P\', '\NX01\')
+;
+COMMIT;
+
+
+SELECT X_LOCATION_LOB 
+FROM BSI_DOCUMENT doc
+WHERE lower(doc.X_LOCATION_LOB) LIKE '%archive\2018%'
+;
+
+SELECT X_LOCATION_LOB 
+FROM BSI_DOCUMENT doc
+WHERE lower(doc.X_LOCATION_LOB) LIKE '%sg1473p%'
+;
+
+SELECT 
+	dbms_lob.getlength(DOC.X_LOCATION_LOB) lob_len,
+	dbms_lob.SUBSTR(DOC.X_LOCATION_LOB, 50, 3) sub_location,
+	DOC.X_LOCATION_LOB
+FROM BSI_DOCUMENT doc
+WHERE DOC.X_LOCATION_LOB IS NOT NULL
+AND dbms_lob.instr(dbms_lob.substr(LOWER(DOC.X_LOCATION_LOB), 61, 40), LOWER('Archive\2018')) > 0
+;
+
+
+SELECT * FROM BSI_DOCUMENT doc 
+	WHERE lower(doc.X_LOCATION_LOB) LIKE lower('NX01\Archive\2018%')
+;

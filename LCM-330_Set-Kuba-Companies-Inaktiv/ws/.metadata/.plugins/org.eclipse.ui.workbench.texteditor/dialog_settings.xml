@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="cr" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="true" key="wholeword"/>
+		<list key="findhistory">
+			<item value="cr"/>
+			<item value="vErrorText"/>
+			<item value="vTextLine"/>
+			<item value="c_Charakterset_Out"/>
+			<item value="vDirectoryPath"/>
+			<item value="vFileNamecsv"/>
+			<item value="vCntrlFilecsv"/>
+			<item value="master_company"/>
+			<item value="knm"/>
+			<item value="kuba_nonmaster"/>
+			<item value="131309"/>
+			<item value="1000002758"/>
+			<item value="cs2"/>
+			<item value="csc"/>
+			<item value="bsi_x_ext_contract"/>
+		</list>
+		<list key="replacehistory">
+			<item value="master_join_no"/>
+			<item value="KBD"/>
+			<item value="kbd"/>
+			<item value="kuba_data"/>
+			<item value="1110267"/>
+			<item value="cstc"/>
+			<item value="SELECT UC.UC_UID FROM BSI_UC uc WHERE UC.CODE_TYPE IN (108580) AND UC.PARENT_UID = 6077977889"/>
+			<item value="NOT IN (6077978180,6077978250,6077978285,6077978542)"/>
+			<item value="6077978180,6077978250,6077978285,6077978542"/>
+			<item value="(109307, 109311)"/>
+			<item value="109307, 109311, 109310, 109310)"/>
+			<item value="108402"/>
+			<item value="108401"/>
+			<item value="&#x09;&#x09;&#x09;&#x09;"/>
+			<item value=" IN "/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="284" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="-2667" key="DIALOG_X_ORIGIN"/>
+		<item value="-101" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

@@ -1,0 +1,40 @@
+Aus Datenbank-Abfrage, Feld X_LOCATION_LOB
+https://dokuarchiv.ltv.ch/w2p2/default.asp?wdSearchCmd=lb_0$*idx_dwInteger00$*op_1$*val_1518701$*rb_0&SetObjectType=0&Redirect2GUI=1&SearchOnly=1&ShowGUIOnly=0&PreferHTMLPreview=0&Dir=Search&Page=RemoteSearch&target=&lang=7&CaseSensitive=0&PreviousVersion=0&Subfolders=1&ZipOnSingleFile=0&Path=&SearchFormHeight=
+
+Aus LCM-Dialog
+https://dokuarchiv.ltv.ch/w2p2/default.asp?wdSearchCmd=lb_0$*idx_dwInteger00$*op_1$*val_1518701$*rb_0&SetObjectType=0&Redirect2GUI=1&SearchOnly=1&ShowGUIOnly=0&PreferHTMLPreview=0&Dir=Search&Page=RemoteSearch&target=&lang=7&CaseSensitive=0&PreviousVersion=0&Subfolders=1&ZipOnSingleFile=0&Path=&SearchFormHeight=
+
+
+** *** ** *** ** *** ** *** ** ***
+**								**
+	Funktion					**
+	LcmModifyHandler.execLoad	**
+**								**
+** *** ** *** ** *** ** *** ** ***
+
+getOrCreateDocumentData().getDocumentTypeUid() =
+Uid[318766, class com.bsiag.crm.shared.core.document.DocumentTypeCodeType]
+
+getOrCreateDocumentData().getName() =
+https://dokuarchiv.ltv.ch/w2p2/default.asp?wdSearchCmd=lb_0$*idx_dwInteger00$*op_1$*val_1518701$*rb_0&SetObjectType=0&Redirect2GUI=1&SearchOnly=1&ShowGUIOnly=0&PreferHTMLPreview=0&Dir=Search&Page=RemoteSearch&target=&lang=7&CaseSensitive=0&PreviousVersion=0&Subfolders=1&ZipOnSingleFile=0&Path=&SearchFormHeight=
+
+getOrCreateDocumentData().getDescription() = 
+Windream link
+
+getOrCreateDocumentData().getRegisteredOn() =
+null
+
+getOrCreateDocumentData().getRegisteredByUserKey() =
+UserKey[10]
+
+getForm().isEnabledGranted() = true
+
+getOrCreateDocumentData().getDocumentKey() =
+DocumentKey[67532131]
+
+
+******************************************
+b__0 = 2
+SELECT table_0_.PARTITION_UID AS col_0_ FROM BSI_COMPANY table_0_ WHERE table_0_.COMPANY_NR=:b__0  and table_0_.DTYPE=2000
+
+10.166.16.238147100449998851763133410.26315418094133747

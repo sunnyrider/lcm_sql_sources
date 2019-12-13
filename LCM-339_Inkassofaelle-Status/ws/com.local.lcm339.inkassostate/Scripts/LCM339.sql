@@ -1,0 +1,36 @@
+MERGE INTO BSI_X_COLLECTION udate_status
+USING 
+(
+	SELECT
+		COL.COLLECTION_NR udate_key
+	FROM BSI_X_COLLECTION col
+	WHERE COL.STATUS_UID NOT IN (138181)
+	AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+	AND COL.COLLECTION_COMPANY_UID = 138179
+) status_should_be_inkasso_order_confirmed
+ON
+(
+	status_should_be_inkasso_order_confirmed.udate_key = udate_status.COLLECTION_NR
+)
+WHEN MATCHED THEN
+	UPDATE SET udate_status.STATUS_UID = 138179
+;
+
+
+MERGE INTO BSI_X_COLLECTION udate_status
+USING 
+(
+	SELECT
+		COL.COLLECTION_NR udate_key
+	FROM BSI_X_COLLECTION col
+	WHERE COL.STATUS_UID NOT IN (138150)
+	AND COL.AGREEMENT_UID IN (4928209628, 4928209629)
+	AND COL.COLLECTION_COMPANY_UID = 0
+) status_should_be_new
+ON
+(
+	status_should_be_new.udate_key = udate_status.COLLECTION_NR
+)
+WHEN MATCHED THEN
+	UPDATE SET udate_status.STATUS_UID = 138179
+;

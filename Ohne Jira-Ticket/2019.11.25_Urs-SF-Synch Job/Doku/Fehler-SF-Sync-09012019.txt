@@ -1,0 +1,298 @@
+[{
+                "name": "Richle's Piano-fort - Klaviertrans.",
+                "id": "45093881",
+                "merged_ids": [],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "info@piano-fort.ch",
+                               "phone": "+41793032779",
+                               "physical_address": {
+                                               "additional_line1": "Thomas Richle",
+                                               "street": {
+                                                               "house_no": "28",
+                                                               "name": "Industriestrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Herisau",
+                                                               "zip": "9100",
+                                                               "county": "AR"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1618243",
+                               "evt_modified": "2018-12-12T00:00:00.000+0100",
+                               "active": true,
+                               "locked": false,
+                               "name": "Richle's Piano-fort - Klaviertrans."
+                }]
+}, {
+                "name": "Helsana Versicherungen AG",
+                "id": "48817180",
+                "merged_ids": ["17299478", "12473391", "41963310", "42285464", "45241978", "17141819", "38521626"],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "ramun.brunner@helsana.ch",
+                               "phone": "+41433401111",
+                               "physical_address": {
+                                               "additional_line1": "Herr Ramun Brunner",
+                                               "street": {
+                                                               "house_no": "130",
+                                                               "name": "Zürichstrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Dübendorf",
+                                                               "zip": "8600",
+                                                               "county": "ZH"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1410274",
+                               "evt_modified": "2018-06-18T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Helsana Versicherungen AG"
+                }]
+}, {
+                "name": "Schön by Maria Cosmetics",
+                "id": "44825108",
+                "merged_ids": [],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "schoen@maria-cosmetics.ch",
+                               "phone": "+41797870667",
+                               "physical_address": {
+                                               "additional_line1": "Maria Teresa Gmünder-Mazza",
+                                               "street": {
+                                                               "house_no": "4",
+                                                               "name": "Honiggasse"
+                                               },
+                                               "city": {
+                                                               "city": "Ossingen",
+                                                               "zip": "8475",
+                                                               "county": "ZH"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1610120",
+                               "evt_modified": "2018-06-18T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Schön by Maria Cosmetics"
+                }]
+}, {
+                "name": "Centre Dr. Burgener",
+                "id": "17561560",
+                "merged_ids": [],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "fr",
+                                               "id": "7770"
+                               },
+                               "email": "pauline.burgener@drburgener.com",
+                               "phone": "+41213290305",
+                               "physical_address": {
+                                               "additional_line1": "Nicolas Chami",
+                                               "street": {
+                                                               "house_no": "12",
+                                                               "name": "rue du Midi"
+                                               },
+                                               "city": {
+                                                               "city": "Lausanne",
+                                                               "zip": "1003",
+                                                               "county": "VD"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1272886",
+                               "evt_modified": "2019-01-03T00:00:00.000+0100",
+                               "active": true,
+                               "locked": false,
+                               "name": "Centre Dr. Burgener"
+                }]
+}, {
+                "name": "Pro Surdis GmbH",
+                "id": "17184189",
+                "merged_ids": [],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "bern@prosurdis.ch",
+                               "phone": "+41313115601",
+                               "physical_address": {
+                                               "additional_line1": "Gerhard Niklaus",
+                                               "street": {
+                                                               "house_no": "9",
+                                                               "name": "Bubenbergplatz"
+                                               },
+                                               "city": {
+                                                               "city": "Bern",
+                                                               "zip": "3011",
+                                                               "county": "BE"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1471180",
+                               "evt_modified": "2018-06-19T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Pro Surdis GmbH"
+                }]
+}, {
+                "name": "Herrencoiffeur LUCART",
+                "id": "50376515",
+                "merged_ids": [],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "phone": "+41618213933",
+                               "physical_address": {
+                                               "additional_line1": "Giaracuni Luca",
+                                               "street": {
+                                                               "house_no": "3A",
+                                                               "name": "Neumattstrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Pratteln",
+                                                               "zip": "4133",
+                                                               "county": "BL"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1618576",
+                               "evt_modified": "2018-12-21T00:00:00.000+0100",
+                               "active": true,
+                               "locked": false,
+                               "name": "Herrencoiffeur LUCART"
+                }]
+}, {
+                "name": "Moor Willi",
+                "id": "17114971",
+                "merged_ids": ["17440010"],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "willi.moor@bluewin.ch",
+                               "phone": "+41627972568",
+                               "physical_address": {
+                                               "additional_line1": "Kundenmaurer",
+                                               "street": {
+                                                               "house_no": "34",
+                                                               "name": "Obere Hauptstrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Oftringen",
+                                                               "zip": "4665",
+                                                               "county": "AG"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "389215",
+                               "evt_modified": "2018-06-18T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Moor Willi"
+                }]
+}, {
+                "name": "Mohr Schöner Leben GmbH",
+                "id": "23090131",
+                "merged_ids": ["28515769", "16814309"],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "mohrandmore@bluewin.ch",
+                               "phone": "+41523351672",
+                               "physical_address": {
+                                               "street": {
+                                                               "house_no": "6",
+                                                               "name": "Obstgartenstrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Seuzach",
+                                                               "zip": "8472",
+                                                               "county": "ZH"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1588813",
+                               "evt_modified": "2018-06-18T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Mohr Schöner Leben GmbH"
+                }]
+}, {
+                "name": "Josef Stucki AG",
+                "id": "17651193",
+                "merged_ids": ["16827766"],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "buero@josefstuckiag.ch",
+                               "phone": "+41556101287",
+                               "physical_address": {
+                                               "additional_line1": "Hof- und Agrartechnik",
+                                               "street": {
+                                                               "house_no": "8",
+                                                               "name": "Linthlistrasse"
+                                               },
+                                               "city": {
+                                                               "city": "Oberurnen",
+                                                               "zip": "8868",
+                                                               "county": "GL"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "360530",
+                               "evt_modified": "2018-06-19T00:00:00.000+0200",
+                               "active": true,
+                               "locked": false,
+                               "name": "Josef Stucki AG"
+                }]
+}, {
+                "name": "Graziella Lumetta",
+                "id": "50031358",
+                "merged_ids": ["20048050"],
+                "external_customers": [{
+                               "language": {
+                                               "iso_code": "de",
+                                               "id": "246"
+                               },
+                               "email": "graziella.lumetta@beauty-diamond.ch",
+                               "phone": "+41627519711",
+                               "physical_address": {
+                                               "street": {
+                                                               "house_no": "3",
+                                                               "name": "Pfistergasse"
+                                               },
+                                               "city": {
+                                                               "city": "Zofingen",
+                                                               "zip": "4800",
+                                                               "county": "AG"
+                                               }
+                               },
+                               "source_system_uid": "LTV",
+                               "id": "1618047",
+                               "evt_modified": "2018-12-05T00:00:00.000+0100",
+                               "active": true,
+                               "locked": false,
+                               "name": "Graziella Lumetta"
+                }]
+}]

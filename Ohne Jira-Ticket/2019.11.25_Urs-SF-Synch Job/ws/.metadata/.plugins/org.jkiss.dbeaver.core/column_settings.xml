@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="NodeList/OraclePrivTable">
+		<column name="Privileg" visible="true" order="0" width="91"/>
+		<column name="Begünstiger" visible="true" order="1" width="116"/>
+		<column name="Begünstigter" visible="true" order="2" width="81"/>
+		<column name="Gewährbar" visible="true" order="3" width="71"/>
+		<column name="Hierachie" visible="true" order="4" width="64"/>
+	</item>
+	<item id="NodeList/OracleProcedureArgument">
+		<column name="Name" visible="true" order="0" width="134"/>
+		<column name="Position" visible="true" order="1" width="58"/>
+		<column name="In/Out" visible="true" order="2" width="50"/>
+		<column name="Typ" visible="true" order="3" width="68"/>
+		<column name="Länge" visible="true" order="4" width="47"/>
+		<column name="Skalierung" visible="true" order="5" width="70"/>
+		<column name="Präzision" visible="true" order="6" width="62"/>
+	</item>
+	<item id="NodeList/OracleProcedurePackaged">
+		<column name="Name" visible="true" order="0" width="183"/>
+		<column name="Typ der Prozedur" visible="true" order="1" width="104"/>
+	</item>
+	<item id="NodeList/OracleTable">
+		<column name="Name" visible="true" order="0" width="237"/>
+		<column name="Stat Row Count" visible="true" order="1" width="96"/>
+		<column name="Tablespace" visible="true" order="2" width="97"/>
+		<column name="Comment" visible="true" order="3" width="68"/>
+	</item>
+	<item id="NodeList/OracleTableColumn">
+		<column name="Spaltenname" visible="true" order="0" width="207"/>
+		<column name="#" visible="true" order="1" width="27"/>
+		<column name="Data Type" visible="true" order="2" width="74"/>
+		<column name="Type Mod" visible="true" order="3" width="68"/>
+		<column name="Length" visible="true" order="4" width="51"/>
+		<column name="Precision" visible="true" order="5" width="62"/>
+		<column name="Scale" visible="true" order="6" width="41"/>
+		<column name="Not Null" visible="true" order="7" width="59"/>
+		<column name="Default" visible="true" order="8" width="52"/>
+		<column name="Comment" visible="true" order="9" width="68"/>
+	</item>
+	<item id="NodeList/OracleTableConstraint/OracleTableConstraintColumn">
+		<column name="Name" visible="true" order="0" width="218"/>
+		<column name="Eigentümer" visible="true" order="1" width="134"/>
+		<column name="Type" visible="true" order="2" width="82"/>
+		<column name="Condition" visible="true" order="3" width="274"/>
+		<column name="Status" visible="true" order="4" width="59"/>
+	</item>
+	<item id="NodeList/OracleTableIndex/OracleTableIndexColumn">
+		<column name="Indexname" visible="true" order="0" width="188"/>
+		<column name="Tabelle" visible="true" order="1" width="134"/>
+		<column name="Indextyp" visible="true" order="2" width="60"/>
+		<column name="Ascending" visible="true" order="3" width="71"/>
+		<column name="Expression" visible="true" order="4" width="70"/>
+		<column name="Unique" visible="true" order="5" width="53"/>
+		<column name="Tablespace" visible="true" order="6" width="80"/>
+	</item>
+	<item id="NodeList/OracleTableIndexColumn">
+		<column name="Column" visible="true" order="0" width="130"/>
+		<column name="Ascending" visible="true" order="1" width="70"/>
+		<column name="Expression" visible="true" order="2" width="69"/>
+	</item>
+	<item id="SchemaSelector">
+		<column name="Name" visible="true" order="0" width="183"/>
+	</item>
+	<item id="projectExplorer">
+		<column name="Name" visible="true" order="0" width="149"/>
+		<column name="DataSource" visible="true" order="1" width="116"/>
+	</item>
+</items>

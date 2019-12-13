@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="NodeList/OracleTableColumn">
+		<column name="Spaltenname" visible="true" order="0" width="205"/>
+		<column name="#" visible="true" order="1" width="27"/>
+		<column name="Data Type" visible="true" order="2" width="74"/>
+		<column name="Type Mod" visible="true" order="3" width="68"/>
+		<column name="Length" visible="true" order="4" width="51"/>
+		<column name="Precision" visible="true" order="5" width="62"/>
+		<column name="Scale" visible="true" order="6" width="41"/>
+		<column name="Not Null" visible="true" order="7" width="59"/>
+		<column name="Default" visible="true" order="8" width="52"/>
+		<column name="Comment" visible="true" order="9" width="68"/>
+	</item>
+	<item id="projectExplorer">
+		<column name="Name" visible="true" order="0" width="229"/>
+		<column name="DataSource" visible="true" order="1" width="196"/>
+	</item>
+</items>

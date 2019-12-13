@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="oracle_thin-16e45ebe8c3-9339391fd5453cf" provider="oracle" driver="oracle_thin" name="PROD" save-password="true" read-only="false">
+		<connection server="" database="" url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (FAILOVER = YES)(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-2.ltvintra.ltv.ch)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-4.ltvintra.ltv.ch)(PORT = 1521)))(CONNECT_DATA = (SERVICE_NAME = CRMPROD_ACTIVE.ltvintra.ltv.ch)(FAILOVER_MODE = (TYPE = SELECT) (METHOD = BASIC)(RETRIES = 20)(DELAY = 15))))" user="bsi_user" password="EFQ1eHNpdU8SJmbf" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="CUSTOM"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+		<custom-property name="resultset.maxrows" value="500"/>
+	</data-source>
+	<data-source id="oracle_thin-16e45ecf9f6-7b68cc93557ad754" provider="oracle" driver="oracle_thin" name="TEP" save-password="true" read-only="false">
+		<connection host="ora-dbs-6.ltvintra.ltv.ch" port="1521" server="" database="CRMTEP.ltvintra.ltv.ch" url="jdbc:oracle:thin:@//ora-dbs-6.ltvintra.ltv.ch:1521/CRMTEP.ltvintra.ltv.ch" user="bsi_user" password="ERcPNVJGVk5UQGbf" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+		<custom-property name="resultset.maxrows" value="500"/>
+	</data-source>
+	<data-source id="oracle_thin-16e45ee280a-7af88ae039cfb029" provider="oracle" driver="oracle_thin" name="TER" save-password="true" read-only="false">
+		<connection host="ora-dbs-8.ltvintra.ltv.ch" port="1521" server="" database="CRMTER.ltvintra.ltv.ch" url="jdbc:oracle:thin:@//ora-dbs-8.ltvintra.ltv.ch:1521/CRMTER.ltvintra.ltv.ch" user="bsicrm" password="PhQBEVkaYiEjAWbf" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>

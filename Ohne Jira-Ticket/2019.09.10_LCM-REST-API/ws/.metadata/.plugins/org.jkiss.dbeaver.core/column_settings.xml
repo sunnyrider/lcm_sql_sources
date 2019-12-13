@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="SchemaSelector">
+		<column name="Name" visible="true" order="0" width="95"/>
+	</item>
+</items>

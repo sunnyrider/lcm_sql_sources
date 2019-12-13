@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="vTextLine :="/>
+		<item key="casesensitive" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="false"/>
+		<list key="findhistory">
+			<item value="vTextLine :="/>
+			<item value="vTextLine"/>
+			<item value="substr"/>
+			<item value="lob_s"/>
+			<item value="22578672"/>
+			<item value="AND ec.address_nr IS NULL"/>
+			<item value="ec.address_nr"/>
+			<item value="AND ec.ship_po_nr IS NULL THEN"/>
+			<item value="CASE WHEN ec.ship_address_nr IS NULL"/>
+			<item value="lcm_accounts_nx"/>
+			<item value="lcm_accounts_samba"/>
+			<item value="AND ec.ship_po_nr IS NULL"/>
+			<item value="ship"/>
+			<item value="bsi_address_usage"/>
+			<item value="121799"/>
+		</list>
+		<list key="replacehistory">
+			<item value="21961762"/>
+			<item value="AND legaladdr.address_nr IS NULL"/>
+			<item value="AND shipping_apo.address_nr IS NULL THEN"/>
+			<item value="CASE WHEN shipping_addr.address_nr IS NULL"/>
+			<item value="CASE WHEN ec.ship_address_nr IS NULL"/>
+			<item value="WHEN"/>
+			<item value="121808"/>
+			<item value="-- 121808: Korrespondenz EP"/>
+			<item value=""/>
+			<item value="113688  -- 113688: Anschrift"/>
+			<item value="CMP"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="284"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_X_ORIGIN" value="1428"/>
+		<item key="DIALOG_Y_ORIGIN" value="10"/>
+	</section>
+</section>

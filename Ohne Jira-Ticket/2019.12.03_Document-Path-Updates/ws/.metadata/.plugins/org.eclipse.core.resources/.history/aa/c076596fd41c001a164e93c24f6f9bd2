@@ -1,0 +1,7 @@
+UPDATE nxdsmp.customerimage 
+SET FILEREF='\\NX01\nxClient\Scripts\openarchive.vbs ' || FILEREF WHERE FILEREF LIKE '\\NX01\Archive\2018%'
+;
+
+SELECT * FROM BSI_DOCUMENT doc 
+	WHERE lower(doc.X_LOCATION_LOB) LIKE lower('\\NX01\Archive\2018%')
+;

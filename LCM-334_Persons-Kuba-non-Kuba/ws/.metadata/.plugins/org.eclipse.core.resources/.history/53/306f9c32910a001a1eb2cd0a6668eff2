@@ -1,0 +1,53 @@
+DROP
+	MATERIALIZED VIEW s2_kuba_person_mview_in;
+
+CREATE
+	MATERIALIZED VIEW s2_kuba_person_mview_in BUILD DEFERRED AS WITH l AS (
+		SELECT MAX(load_nr) load_nr
+	FROM
+		s2_kuba_person_in) SELECT
+		s.*,
+		ea.street,
+		ea.po_box,
+		ea.address_nr,
+		2470 new_type_uid,
+		COALESCE(ej.interface_uid, 131310) interface_uid,
+		COALESCE(ej.join_no, get_next_pers_no()) join_no
+	FROM
+		s2_kuba_person_in s
+	JOIN l ON
+		l.load_nr = s.load_nr
+	JOIN bsi_x_ext_address ea ON ea.join_nr = s.cr_id_nr
+		AND ea.join_type_uid = 108224
+		AND ea.type_uid = 2315
+		AND ea.address_nr > 0
+		-- falls KüBa zu LCM wird (aufgrund einer Modifikation), kann dieser auch zu Firma werden (mit einem DSMP)
+	LEFT OUTER JOIN bsi_x_ext_join ej ON s.person_cr_id_nr = ej.ext_join_nr
+		AND ej.ext_join_type_uid IN (108224, 108236)
+UNION ALL SELECT
+		s.*,
+		ea.street,
+		ea.po_box,
+		ea.address_nr,
+		108241 new_type_uid,
+		COALESCE(ej.interface_uid, 131310) interface_uid,
+		COALESCE(ej.join_no, get_next_pers_no()) join_no
+	FROM
+		s2_kuba_person_in s
+	JOIN l ON l.load_nr = s.load_nr
+	JOIN bsi_x_ext_address ea ON ea.join_nr = s.cr_id_nr
+		AND ea.join_type_uid = 108224
+		AND ea.type_uid = 108240
+		AND ea.address_nr > 0
+	LEFT OUTER JOIN bsi_x_ext_join ej ON s.person_cr_id_nr = ej.ext_join_nr
+		AND ej.ext_join_type_uid IN (108224, 108236)
+		-- falls KüBa zu LCM wird (aufgrund einer Modifikation), kann dieser auch zu Firma werden (mit einem DSMP)
+		WHERE NOT EXISTS (
+			SELECT 0
+		FROM
+			bsi_x_ext_address ea2
+		WHERE
+			ea2.join_nr = s.cr_id_nr
+			AND ea2.type_uid = 2315
+			AND ea2.address_nr > 0)
+;

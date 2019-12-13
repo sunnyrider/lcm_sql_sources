@@ -1,0 +1,17 @@
+CASE WHEN ec.ship_address_nr IS NULL
+AND ec.address_nr IS NULL 
+AND ec.ship_po_nr IS NULL THEN
+	gt.text
+ELSE 
+	gt_sh_po.text
+END ShippingP_O_Box__c,
+;
+
+SELECT 
+	DOC.X_LOCATION_LOB
+	dbms_lob.SUBSTR(DOC.X_LOCATION_LOB, 20, 3) sub_location
+FROM BSI_DOCUMENT doc
+--WHERE lower(doc.X_LOCATION_LOB) LIKE '%sg1473p%'
+WHERE dbms_lob.getlength(DOC.X_LOCATION_LOB) > 20
+AND dbms_lob.SUBSTR(LOWER(DOC.X_LOCATION_LOB), 3, 20) LIKE LOWER('sg1473p\Archive\2018%')
+;

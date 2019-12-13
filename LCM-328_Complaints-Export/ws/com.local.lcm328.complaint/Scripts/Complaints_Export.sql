@@ -1,0 +1,93 @@
+SELECT DISTINCT
+	CMP.X_COMPLEX_NO Account_id,
+	CASE WHEN XCPL.EVT_FINISHED IS NOT NULL THEN 
+		to_char(XCPL.EVT_FINISHED, 'dd.mm.yyyy') 
+	ELSE ''
+	END ClosedDate,
+
+--	REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(XCPL.DESCRIPTION, 3000, 1), chr(13), ' '), 
+--		chr(10), ' '), 
+--		chr(11), ' '),
+--		chr(9), ' '), 
+--		chr(32), ' ') 
+	dbms_lob.substr(XCPL.DESCRIPTION, 3000, 1) description,
+
+	1 Closed,
+
+	CASE WHEN uc_cp_cat.text IS NOT NULL THEN 
+		UPPER(uc_cp_cat.text) 
+	ELSE 'NONE'
+	END case_reason,
+
+	'COMPLAINT' record_type_id,
+	'Closed' Status,
+
+--	REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(XCPL.SUBJECT, chr(13), ' '),
+--		chr(10), ' '),
+--		chr(11), ' '),
+--		chr(9), ' '), 
+--		chr(32), ' ') 
+	XCPL.SUBJECT subject,
+
+	CMP.COMPANY_NO Company,
+
+	CASE WHEN upper(CMP.NAME1) NOT LIKE 'UNBEKANNT%' 
+		AND trim(CMP.NAME1) NOT IN ('$','*','**','*/',',,','-','--','---','-.',':',';','?','??','^','¨',':','-','0','00')
+		AND CMP.NAME1 NOT LIKE '%?%' THEN
+			REPLACE(REPLACE(REPLACE(CMP.NAME1, chr(13), ' '),
+				chr(9), ' '), 
+				chr(32), ' ')
+	ELSE ''
+	END name,
+	'Problem' case_type,
+	XCPL.COMPLAINT_NO LCM_Complaint_Number, 
+	CASE WHEN XCPL.SOLUTION_NOTES IS NOT NULL THEN
+		CASE WHEN DBMS_LOB.GETLENGTH(XCPL.SOLUTION_NOTES) > 3500 THEN 
+			'(3500 characters from total ' || DBMS_LOB.GETLENGTH(XCPL.SOLUTION_NOTES) || ') ' ||
+--			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(XCPL.SOLUTION_NOTES, 3500, 1), chr(10), ' '),
+--			chr(13), ' '), 
+--			chr(11), ' '),
+--			chr(9), ' '), 
+--			chr(32), ' ')
+			dbms_lob.substr(XCPL.SOLUTION_NOTES, 3500, 1)
+		ELSE 
+			'(' || DBMS_LOB.GETLENGTH(XCPL.SOLUTION_NOTES) || ' characters) ' || 
+--			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(XCPL.SOLUTION_NOTES, 3500, 1), chr(10), ' '), 
+--			chr(13), ' '), 
+--			chr(11), ' '),
+--			chr(9), ' '), 
+--			chr(32), ' ')
+			dbms_lob.substr(XCPL.SOLUTION_NOTES, 3500, 1)
+		END 
+	ELSE
+		NULL
+	END lcm_solution,
+
+	XCPL.PERSON_NR LCM_Contact_person,
+	to_char(XCPL.EVT_ISSUED, 'dd.mm.yyyy') Created_in_LCM,
+
+	CASE WHEN prs_responsible.FIRST_NAME IS NOT NULL THEN
+		prs_responsible.FIRST_NAME || ' ' || prs_responsible.LAST_NAME
+	WHEN prs_responsible.LAST_NAME IS NULL THEN
+		''
+	ELSE
+		prs_responsible.LAST_NAME
+	END Owner_lcm
+--	TO_NUMBER(to_char(XCPL.EVT_ISSUED, 'yyyymmddhh24mi')) lfd_nr
+FROM BSI_X_COMPLAINT xcpl 
+	INNER JOIN BSI_X_EXT_JOIN_JOIN ejj 
+		INNER JOIN BSI_X_EXT_JOIN ej ON EJ.EXT_JOIN_NR = EJJ.EXT_JOIN_NR
+			AND EJ.EXT_JOIN_TYPE_UID = EJJ.EXT_JOIN_TYPE_UID
+			AND EJ.ACTIVE = 1
+		INNER JOIN BSI_COMPANY cmp ON CMP.COMPANY_NR = EJJ.JOIN_NR
+	ON EJJ.JOIN_NR = XCPL.COMPANY_NR
+	LEFT JOIN BSI_UC_TEXT uc_cp_cat ON uc_cp_cat.UC_UID = XCPL.COMPLAINT_CATEGORY_UID AND uc_cp_cat.LANGUAGE_UID = 1303
+	LEFT JOIN BSI_PERSON prs_responsible ON prs_responsible.PERSON_NR = XCPL.RESPONSIBLE_USER_NR
+WHERE XCPL.COMPANY_NR IS NOT NULL
+--109053	Abgeschlossen
+--119170	Abgeschlossen
+--109056	Abklärung erledigt
+AND XCPL.STATUS_UID IN (119170, 109053, 109056)
+AND XCPL.EVT_ISSUED > to_date('31.12.2014', 'dd.mm.yyyy')
+--ORDER BY TO_NUMBER(to_char(XCPL.EVT_ISSUED, 'yyyymmddhh24mi')) DESC
+;

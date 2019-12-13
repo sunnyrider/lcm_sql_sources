@@ -1,0 +1,60 @@
+POST /bsicrmserver/rest/v1/customers HTTP/1.1
+Host: lcm-tep.ltvintra.ltv.ch:7002
+Content-Type: application/json
+X-CrmUsername: dir14400
+Authorization: Bearer b923667a-50db-417b-992e-474859f28e75
+User-Agent: PostmanRuntime/7.17.1
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: bfbcc176-523f-4ae6-bd23-1aaff3ded674,d2634d1e-0618-4fe0-bc50-6b9ea426b730
+Host: lcm-tep.ltvintra.ltv.ch:7002
+Accept-Encoding: gzip, deflate
+Content-Length: 462
+Connection: keep-alive
+cache-control: no-cache
+
+{
+  "type": "company",
+  "name":"schlaber",
+  "language": "it",
+  "physical_addresses":[{
+      "street":{
+          "id":"270271",
+          "language":"DE",
+          "name":"Eichwaldstrasse",
+          "house_no":"3"
+      },
+      "city":{
+        "onrp_no":"3404"
+      },
+      "default": true
+  }],
+  "electronic_addresses":[{
+      "channel":"email",
+      "channel_value":"meine.alte.email@host.domain",
+      "default": true
+  }]
+}
+
+{
+  "type": "company",
+  "name":"schlaber",
+  "language": "de",
+  "physical_addresses":[{
+      "street":{
+          "id":"270271",
+          "language":"DE",
+          "name":"Eichwaldstrasse",
+          "house_no":"3"
+      },
+      "city":{
+        "onrp_no":"3404"
+      },
+      "default": true
+  }],
+  "electronic_addresses":[{
+      "channel":"email",
+      "channel_value":"meine.alte.email@host.domain",
+      "default": true
+  }]
+}

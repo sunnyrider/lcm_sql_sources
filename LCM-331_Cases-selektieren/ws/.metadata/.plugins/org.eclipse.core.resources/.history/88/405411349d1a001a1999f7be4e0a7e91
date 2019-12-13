@@ -1,0 +1,144 @@
+SELECT 
+	DISTINCT
+
+	cmp.X_COMPLEX_NO x_complex_no,
+	to_char(CSE.EVT_END, 'dd.mm.yyyy') closed_date,
+	CSE.EMAIL_ADDRESS contact_email,
+	CSE.FAX_NO contact_fax,
+
+	CASE WHEN CSE.PHONE_NO LIKE '%+4175%' 
+		OR CSE.PHONE_NO LIKE '%+4176%'  
+		OR CSE.PHONE_NO LIKE '%+4177%'  
+		OR CSE.PHONE_NO LIKE '%+4178%'  
+		OR CSE.PHONE_NO LIKE '%+4179%' THEN  
+		CSE.PHONE_NO
+	ELSE 
+		NULL
+	END contact_mobile,
+
+	CASE WHEN CSE.PHONE_NO LIKE '%+4175%' 
+		OR CSE.PHONE_NO LIKE '%+4176%'  
+		OR CSE.PHONE_NO LIKE '%+4177%' 
+		OR CSE.PHONE_NO LIKE '%+4178%' 
+		OR CSE.PHONE_NO LIKE '%+4179%'  THEN
+		NULL
+	ELSE 
+		CSE.PHONE_NO           
+	END contact_phone,
+
+	to_char(CSE.EVT_START, 'dd.mm.yyyy') created_date,
+
+	1 closed,
+	uc_origin.TEXT case_origin,
+	uc_process.text case_reason,
+	CASE WHEN uc_process.text = 'Beschwerde' THEN
+		'Beschwerde'
+	ELSE
+		'other'
+	END record_type,
+	'Closed' Status,
+
+	CMC.DISPLAY_NAME subject,
+	cmp.COMPANY_NO company,
+	REPLACE(cmp.NAME1, chr(13), '') name,
+	CSE.PERSON_NR LCM_Contact_Number,
+
+	CASE WHEN prsopen.FIRST_NAME IS NOT NULL THEN 
+		REPLACE(REPLACE(prsopen.FIRST_NAME,'"',''''),'''''','''')
+		|| ' ' || 
+		REPLACE(REPLACE(prsopen.LAST_NAME,'"',''''),'''''','''')
+	WHEN prsopen.LAST_NAME IS NULL THEN
+		''
+	ELSE 
+		REPLACE(REPLACE(prsopen.LAST_NAME,'"',''''),'''''','''')
+	END LCM_User_opened_Case,
+	CASE WHEN prsclose.FIRST_NAME IS NOT NULL THEN 
+		REPLACE(REPLACE(prsclose.FIRST_NAME,'"',''''),'''''','''')
+		|| ' ' || 
+		REPLACE(REPLACE(prsclose.LAST_NAME,'"',''''),'''''','''')
+	WHEN prsclose.LAST_NAME IS NULL THEN
+		''
+	ELSE 
+		REPLACE(REPLACE(prsclose.LAST_NAME,'"',''''),'''''','''')
+	END LCM_User_closed_CASE,
+
+	case_join.max_case_no case_number,
+
+	CASE WHEN CMC.TEXT_LOB IS NOT NULL THEN
+		CASE WHEN DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) > 4000 THEN 
+			'(4000 characters from total ' || DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) || ')' || 
+			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 1000, 1), CHR(13), ' '), 
+				chr(10), ' '), 
+				chr(11), ' '),
+				chr(9), ' '), 
+				chr(32), ' ')
+		ELSE 
+			'(' || DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) || ' characters)' || 
+			REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 1000, 1), CHR(13), ' '), 
+				chr(10), ' '), 
+				chr(11), ' '),
+				chr(9), ' '), 
+				chr(32), ' ')
+		END 
+	ELSE
+		NULL
+	END LCM_Communcation_Text_Part1,
+	CASE WHEN CMC.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) > 1000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 1000, 1001), CHR(13), ' '), 
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part2,
+	CASE WHEN CMC.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) > 2000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 1000, 2001), CHR(13), ' '), 
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part3,
+	CASE WHEN CMC.TEXT_LOB IS NOT NULL AND DBMS_LOB.GETLENGTH(CMC.TEXT_LOB) > 3000 THEN
+		REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 1000, 3001), CHR(13), ' '),
+			chr(10), ' '),
+			chr(11), ' '),
+			chr(9), ' '), 
+			chr(32), ' ')
+	ELSE 
+		NULL
+	END LCM_Communcation_Text_Part4,
+
+		(
+			SELECT
+				SUBSTR(LISTAGG(dbms_lob.substr(XDOC.X_LOCATION_LOB, 2000, 1), '|') within GROUP(ORDER BY XDOC.X_LOCATION_LOB), 0, 3000)
+			FROM BSI_DOCUMENT xdoc
+			WHERE XDOC.ITEM_KEY0_NR = CMC.COMMUNICATION_NR
+		) doc_links,
+		BDOC.DOCUMENT_TYPE_UID
+FROM BSI_CASE CSE
+	INNER JOIN BSI_COMMUNICATION CMC
+		INNER JOIN BSI_DOCUMENT BDOC 
+		ON BDOC.ITEM_KEY0_NR = CMC.COMMUNICATION_NR
+	ON cmc.CASE_FRAME_NR = CSE.CASE_FRAME_NR
+
+	INNER JOIN BSI_COMPANY cmp ON CMP.COMPANY_NR = cse.x_company_nr
+	
+    INNER JOIN BSICRM.BSI_PERSON prsopen ON prsopen.PERSON_NR = CSE.CREATE_USER_NR
+    INNER JOIN BSICRM.BSI_PERSON prsclose ON prsclose.PERSON_NR = CSE.X_CLOSE_USER_NR
+    INNER JOIN BSICRM.BSI_UC_TEXT uc_origin ON uc_origin.UC_UID = CSE.CHANNEL_UID AND uc_origin.LANGUAGE_UID = 1303
+	INNER JOIN BSICRM.BSI_UC_TEXT uc_process ON uc_process.UC_UID = CSE.PROCESS_UID AND uc_process.LANGUAGE_UID = 246
+
+	INNER JOIN (
+		SELECT MAX(ICSE.CASE_NO) max_case_no,
+		ICSE.CASE_FRAME_NR
+		FROM BSI_CASE icse
+		GROUP BY ICSE.CASE_FRAME_NR
+	) case_join ON case_join.CASE_FRAME_NR = cse.CASE_FRAME_NR
+
+	WHERE CMC.ORIGIN_UID NOT IN (105356, 143891)  -- 105356	Marketing, 143891	National Report
+--	AND bdoc.ITEM_KEY0_NR = 4823232737
+	AND CSE.PHONE_NO IS NOT NULL
+;

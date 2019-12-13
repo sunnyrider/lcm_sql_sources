@@ -1,0 +1,87 @@
+{
+	"folders": {},
+	"connections": {
+		"oracle_thin-16eabbf2b6a-2b8c90b663c83132": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "PROD",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"url": "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (FAILOVER = YES)(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-2.ltvintra.ltv.ch)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-4.ltvintra.ltv.ch)(PORT = 1521)))(CONNECT_DATA = (SERVICE_NAME = CRMPROD_ACTIVE.ltvintra.ltv.ch)(FAILOVER_MODE = (TYPE = SELECT) (METHOD = BASIC)(RETRIES = 20)(DELAY = 15))))",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-sid-service@": "SERVICE",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-connection-type@": "CUSTOM",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false"
+				}
+			},
+			"custom-properties": {
+				"resultset.maxrows": "30000"
+			}
+		},
+		"oracle_thin-16eabc00c0d-52b8e1c9a9c34519": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "TEP",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "ora-dbs-6.ltvintra.ltv.ch",
+				"port": "1521",
+				"database": "CRMTEP.ltvintra.ltv.ch",
+				"url": "jdbc:oracle:thin:@//ora-dbs-6.ltvintra.ltv.ch:1521/CRMTEP.ltvintra.ltv.ch",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-sid-service@": "SERVICE",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false"
+				}
+			}
+		},
+		"oracle_thin-16ecca1cc6c-5b02f8c80bb4b012": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "DEV",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "ora-dbs-10.ltvintra.ltv.ch",
+				"port": "1521",
+				"database": "CRMDEV.ltvintra.ltv.ch",
+				"url": "jdbc:oracle:thin:@//ora-dbs-10.ltvintra.ltv.ch:1521/CRMDEV.ltvintra.ltv.ch",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-sid-service@": "SERVICE",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-always-show-dba@": "false"
+				}
+			},
+			"custom-properties": {
+				"resultset.maxrows": "500"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

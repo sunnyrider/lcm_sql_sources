@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="DataTransfer">
+		<item value="true" key="showFinalMessage"/>
+		<item value="1" key="maxJobCount"/>
+		<item value="database_producer" key="producer"/>
+		<item value="stream.csv" key="processor"/>
+		<item value="stream_consumer" key="consumer"/>
+		<section name="DatabaseTransferConsumer">
+			<item value="false" key="truncateBeforeLoad"/>
+			<item value="true" key="openTableOnFinish"/>
+			<item value="true" key="useTransactions"/>
+			<item value="10000" key="commitAfterRows"/>
+			<item value="true" key="openNewConnections"/>
+			<section name="mappings">
+			</section>
+		</section>
+		<section name="DatabaseTransferProducer">
+			<item value="false" key="selectedColumnsOnly"/>
+			<item value="false" key="selectedRowsOnly"/>
+			<item value="100000" key="segmentSize"/>
+			<item value="true" key="openNewConnections"/>
+			<item value="true" key="queryRowCount"/>
+			<item value="SINGLE_QUERY" key="extractType"/>
+		</section>
+		<section name="StreamTransferConsumer">
+			<item value="false" key="outputEncodingBOM"/>
+			<item value="false" key="useSingleFile"/>
+			<item value="true" key="openFolderOnFinish"/>
+			<item value="${table}_${timestamp}" key="outputFilePattern"/>
+			<item value="false" key="outputClipboard"/>
+			<item value="false" key="executeProcessOnFinish"/>
+			<item value="" key="formatterProfile"/>
+			<item value="HEX" key="lobEncoding"/>
+			<item value="C:\Users\dir14400\OneDrive\Dokumente\Jira\11_Tickets_NOV.2019\LCM-331_Cases-selektieren\Doku" key="outputFolder"/>
+			<item value="SKIP" key="lobExtractType"/>
+			<item value="" key="finishProcessCommand"/>
+			<item value="UTF-8" key="outputEncoding"/>
+			<item value="false" key="compressResults"/>
+		</section>
+		<section name="processors">
+			<section name="stream_consumer:stream.csv">
+				<item value="&quot;" key="quoteChar"/>
+				<item value="csv" key="extension"/>
+				<item value="," key="delimiter"/>
+				<item value="top" key="header"/>
+				<item value="false" key="formatNumbers"/>
+				<item value="false" key="quoteAlways"/>
+				<item value="quoteChar,extension,delimiter,header,formatNumbers,quoteAlways,quoteNever,escape," key="@propNames"/>
+				<item value="false" key="quoteNever"/>
+				<item value="quotes" key="escape"/>
+			</section>
+		</section>
+	</section>
+</section>

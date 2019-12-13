@@ -1,0 +1,481 @@
+#%RAML 0.8
+title: LCM REST API
+version: "1.0"
+baseUri: "http://ch.local.crm/rest/v1.0/"
+mediaType:  application/json
+
+securitySchemes:
+  - oauth_2_0:
+      type: OAuth 2.0
+      describedBy:
+        headers:
+          Authorization:
+            description: Bearer token is needed
+            type: string
+      settings:
+        accessTokenUri: https://auth.local.ch
+        authorizationUri: https://auth.local.ch
+
+securedBy: [oauth_2_0]
+
+resourceTypes:
+  - collection: !include resourceTypes/collection.raml
+  - collection-item: !include resourceTypes/collection-item.raml
+  - sub-collection: !include resourceTypes/sub-collection.raml
+  - item-alias: !include resourceTypes/item-alias.raml
+
+traits:
+  - orderable: !include traits/orderable.raml
+  - pageable: !include traits/pageable.raml
+  - hasNotFoundError: !include traits/hasNotFoundError.raml
+  - hasUnauthorizedError: !include ./traits/hasUnauthorizedError.raml
+  - hasInternalServerError: !include ./traits/hasInternalServerError.raml
+  - hasBadRequestError: !include ./traits/hasBadRequestError.raml
+  - translateable: !include ./traits/translateable.raml
+
+
+/customers:
+  type:
+    collection:
+      exampleCollection: !include customer/customer_list.json
+  get:
+    is: [  pageable ]
+    queryParameters:
+      name:
+        description: case sensitive wildcard filtering for the given value
+      city:
+        description: case sensitive wildcard filtering for the given value
+      zipCode:
+        description: wildcard filtering for the given value
+      phone:
+        description: wildcard filtering support
+        example: phone=04440140*
+      street:
+        description: case sensitive wildcard filtering for the given value
+      onlineEntryId:
+        description: exact search for given online entry id
+      type:
+        enum:
+          - company
+          - person
+      order_by:
+        description: sorting the resultset for the given properties. Multiple properties can be combined with an ","
+          Default sort direction is ascending. If you want descending sort direction just put a "-" in front of the attribute.
+          E.g. "sort_by=[-][attribute name]"
+        enum:
+          - id
+          - name
+          - street
+          - city
+      expand:
+        enum:
+          - contact_persons
+          - physical_addresses
+          - electronic_addresses
+          - advisors
+          - parent_company
+          - child_companies
+          - places
+          - invoices
+          - communications
+          - complaints
+          - cases
+          - leads
+          - contract_statistics
+          - history
+
+  post:
+    description: creates a new customer
+    body:
+      application/json-company:
+        example: !include company/company_create.json
+      application/json-person:
+        example: !include person/person_create.json
+    responses:
+      201:
+        headers:
+          Location:
+            description: contains the location of the newly created resource
+
+  /{customerId}:
+    type:
+      collection-item:
+        exampleItem: null
+    get:
+      description: |
+        * attribute language is one of the following values ["de", "fr", "en", "it"]
+        * attribute salutation is one of the following values ["mr", "ms", "dear_sir_or_madam"]
+        * external ids contains only ids which are active in the source system
+      queryParameters:
+        expand:
+          enum:
+            - contact_persons
+            - physical_addresses
+            - electronic_addresses
+            - advisors
+            - parent_company
+            - child_companies
+            - places
+            - invoices
+            - communications
+            - complaints
+            - cases
+            - leads
+            - contract_statistics
+          required: false
+      responses:
+       200:
+         body:
+           application/json-company:
+             example: !include company/company.json
+           application/json-person:
+             example: !include person/person.json
+    post:
+       description: |
+        Updates an existing customer and it's default_physical_address.
+        Beware if attribute onrp_no is set in the default_physical_address, then city and zip are unnecessary and are ignored if they are also set.
+
+        Customer can not be updated if:
+        * it's a samba customer and locked
+        * it's a DSMP customer (if not a KAM customer, CONTM address can be updated)
+
+       body:
+         application/json-company:
+           example: !include company/company_update.json
+         application/json-person:
+           example: !include person/person_update.json
+       responses:
+         204:
+
+    /listing_products:
+      description: Display associated listing products
+      type:
+        collection:
+          exampleCollection: !include listingProducts/listing_products.json
+      get:
+        description: Get a list of associated listing products
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /places:
+      description: Display associated places
+      type:
+        collection:
+          exampleCollection: !include places/places.json
+      get:
+        description: Get a list of associated places
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /history:
+      description: Display old customer ids
+      type:
+        collection:
+          exampleCollection: !include history/history.json
+      get:
+        description: Get a list of old customer ids
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /physical_addresses:
+      description: Display associated physical addresses
+      type:
+        collection:
+          exampleCollection: !include physicalAddress/physical_addresses.json
+      get:
+        description: Get a list of associated physical addresses. PCA and CONTM addresses may not be displayed according to the rules implemented in LCM. Only active addresses can be retrieved
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+      post:
+        description: creates a new physical address
+        body:
+            example: !include physicalAddress/physical_address_create.json
+        responses:
+          204:
+
+      /{addressNo}:
+        description: Display associated physical address
+        type:
+          collection:
+            exampleCollection: !include physicalAddress/physical_address.json
+        get:
+          description: Get the physical address for the given addressNo.
+          is: [ hasInternalServerError, hasUnauthorizedError]
+          responses:
+            200:
+            307:
+              description: if another address is duplicate and master
+            404:
+              description: if the address does no longer exist (e.g. was deleted in source system)
+        post:
+          description: Updates the address. Beware if attribute onrp_no is set, then city and zip are unnecessary and are ignored if they are also set.
+          body:
+              example: !include physicalAddress/physical_address_update.json
+          responses:
+            204:
+
+
+    /electronic_addresses:
+      description: Display associated electronic addresses. Only active addresses are displayed
+      type:
+        collection:
+          exampleCollection: !include electronicAddress/electronic_addresses.json
+      get:
+        description: Get a list of associated electronic addresses
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+      post:
+        description: creates a new electronic address
+        body:
+            example: !include electronicAddress/electronic_address_create.json
+        responses:
+          204:
+      delete:
+        description: deletes an existing electronic address
+        responses:
+          204:
+            description: successfully delete electronic address
+      /validation:
+        description: validates a new electronic address
+        post:
+          description: validates a new electronic address
+          body:
+              example: !include electronicAddress/electronic_address_create.json
+          responses:
+            204:
+            400:
+              body:
+                example: !include errors/validation.json
+
+      /{addressNo}:
+        description: Display associated electronic address
+        type:
+          collection:
+            exampleCollection: !include electronicAddress/electronic_address.json
+        get:
+          description: |
+            Get the electronic address for the given addressNo
+            * Attribute channel is one of the following values ["email","fax","mobile","phone","www"]
+          is: [ hasInternalServerError, hasUnauthorizedError]
+          responses:
+            200:
+            307:
+              description: if another address is duplicate and master
+            404:
+              description: if the address does no longer exist (e.g. was deleted in source system)
+        post:
+          description: updates the address
+          body:
+              example: !include electronicAddress/electronic_address_update.json
+          responses:
+            204:
+        /validation:
+          description: validates an electronic address update
+          post:
+            description: validates an electronic address update
+            body:
+                example: !include electronicAddress/electronic_address_create.json
+            responses:
+              204:
+              400:
+                body:
+                  example: !include errors/validation.json
+
+
+    /contact_persons:
+      description: Display associated contact persons
+      type:
+        sub-collection:
+          exampleCollection: !include contactPerson/contact_persons.json
+      post:
+        description: Create an new contact person
+        body:
+          application/json:
+            example: !include contactPerson/contact_person_create.json
+        responses:
+          204:
+
+      /{contact_person_no}:
+        type:
+          collection-item:
+            exampleItem: !include contactPerson/contact_person.json
+        post:
+          description: updates contact person
+          body:
+            application/json:
+              example: !include contactPerson/contact_person_update.json
+        delete:
+            description: deletes an existing contact person
+            responses:
+                204:
+                    description: successfully delete contact person
+
+    /communications:
+      description: Get list of associated communications
+      type:
+        sub-collection:
+          exampleCollection: !include communication/communications.json
+      post:
+        description: Creates a new communication
+        body:
+          example: !include communication/appointment_communication_create.json
+        responses:
+          201:
+            description: successfully created a new customer advisor relation
+
+      /{communication_no}:
+        type:
+          collection-item:
+            exampleItem: !include communication/communication.json
+
+    /complaints:
+      description: Get list of associated complaints
+      type:
+        sub-collection:
+          exampleCollection: !include complaint/complaints.json
+      /{complaint_no}:
+        type:
+          collection-item:
+            exampleItem: !include complaint/complaint.json
+
+    /cases:
+      description: Get list of associated complaints
+      type:
+        sub-collection:
+          exampleCollection: !include case/cases.json
+      /{case_no}:
+        type:
+          collection-item:
+            exampleItem: !include case/case.json
+
+    /leads:
+      description: Get list of associated leads
+      type:
+        sub-collection:
+          exampleCollection: !include lead/leads.json
+      /{lead_no}:
+        type:
+          collection-item:
+            exampleItem: !include lead/lead.json
+
+    /contract_statistics:
+      description: Get contract statistics of advertising products
+      type:
+        sub-collection:
+          exampleCollection: !include contractStatistics/contract_statistics.json
+
+    /feedback:
+      description: Get feedback item, returns HTTP 404(Not Found) if no feedback communication for this customer has been sent yet
+      type:
+        sub-collection:
+          exampleCollection: !include feedback/feedback.json
+      get:
+        responses:
+          404:
+            body:
+             example: !include errors/hasFeedbackNotFoundError.json
+
+    /parent_company:
+      description: Get parent company item
+      type:
+        collection-item:
+          exampleItem: !include parentCompany/parent_company.json
+      get:
+        description: Get parent company item
+
+    /child_companies:
+      description: Get list of child companies
+      type:
+        sub-collection:
+          exampleCollection : !include childCompanies/child_companies.json
+
+    /advisors:
+      description: Get list of advisors
+      type:
+        sub-collection:
+          exampleCollection : !include advisor/advisors.json
+      post:
+        description: Creates a new customer advisor relation. It's not allowed to have multiple advisors of the same type
+        body:
+          example: !include advisor/advisor_create.json
+        responses:
+          201:
+            description: successfully created a new customer advisor relation
+
+      /{advisorTypeNo}:
+        type:
+          collection-item:
+            exampleItem: !include advisor/advisor.json
+        get:
+          description: |
+            * Attribute advisor_type is one of the following attributes ["fieldsales", "telesales", "telesales_spoc", "kam"]
+        post:
+          description: update customer advisor relation. If the User is not part of the sales structure spoc must be set true.
+          body:
+            example: !include advisor/advisor_update.json
+          responses:
+            204:
+              description: successfully updated a customer advisor relation
+
+        delete:
+          description: deletes an existing customer advisor relation. It's not possible to delete the fieldsales advisor.
+          responses:
+            204:
+              description: successfully delete customer advisor relation
+
+
+
+    /invoices:
+      description: Get list of invoices
+
+      type:
+        sub-collection:
+          exampleCollection : !include invoice/invoices.json
+
+      /{invoiceId}:
+        type:
+          collection-item:
+            exampleItem: !include invoice/invoice.json
+        get:
+          description: |
+            * attribute origin can be one of the following values ["search","dsmp","samba"]
+
+  /sd/{extNo}:
+    type:
+      item-alias:
+
+  /ltv/{extNo}:
+    type:
+        item-alias:
+
+/codes/{codeTypeId}:
+  type:
+    collection:
+      exampleCollection: !include codes/codes.71070.json
+  is: [ { orderable: {fieldsList : "text"} }]
+
+/communications:
+  post:
+    description: creates a new communication
+    body:
+      example: !include communication/email_communication_create.json
+    headers:
+      X-CrmUsername:
+        description: Contains crm username
+        required: true
+    responses:
+      201:
+        description: successfully created a new communication
+
+/physical_addresses/{addressId}:
+  type:
+      item-alias:
+
+/electronic_addresses/{addressId}:
+  type:
+      item-alias:

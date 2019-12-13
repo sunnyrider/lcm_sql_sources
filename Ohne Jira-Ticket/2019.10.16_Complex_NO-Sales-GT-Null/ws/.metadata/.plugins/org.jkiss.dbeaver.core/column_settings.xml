@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="SchemaSelector">
+		<column name="Name" visible="true" order="0" width="95"/>
+	</item>
+	<item id="projectExplorer">
+		<column name="Name" visible="true" order="0" width="201"/>
+		<column name="DataSource" visible="true" order="1" width="168"/>
+	</item>
+</items>

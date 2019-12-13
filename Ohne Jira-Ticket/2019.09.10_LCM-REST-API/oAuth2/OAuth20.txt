@@ -1,0 +1,5 @@
+Kurze Einführung und praktische Anwendung in die Technik mit OAuth2
+
+https://intranet.localsearch.ch/display/PP/10+Knowledge+Base+Common
+https://intranet.localsearch.ch/display/PP/EG+10+Core+System+Environments
+https://marvin.staging.local.ch/  or  https://marvin.local.ch/ 

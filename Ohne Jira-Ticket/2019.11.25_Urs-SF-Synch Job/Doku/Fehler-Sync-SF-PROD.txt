@@ -1,0 +1,49 @@
+Hallo Urs
+
+Ich sehe nur folgendes:
+
+WARNING: Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+Jan 09, 2019 12:25:01 PM ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsBaseService.executeSyncItems(LcmRestSyncItemsBaseService.java:334)
+SEVERE: Error running rest sync item job
+
+        at ch.local.crm.server.complex.ComplexResolveService.resolveComplexNo(ComplexResolveService.java:53)
+        at ch.local.crm.server.interfaces.restsync.customer.LcmRestSyncCustomerItemsBaseService.loadCustomerItem(LcmRestSyncCustomerItemsBaseService.java:54)
+        at ch.local.crm.server.interfaces.restsync.customer.LcmRestSyncCustomerItemsBaseService.loadCustomerItems(LcmRestSyncCustomerItemsBaseService.java:46)
+        at ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsBaseService$LcmCustomerSyncItemTransformer.transformToJsonObject(LcmRestSyncItemsBaseService.java:615)
+        at ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsBaseService$2.run(LcmRestSyncItemsBaseService.java:357)
+        at com.bsiag.crm.server.core.domain.DefaultSuperUserJobFactory$1.runTransaction(DefaultSuperUserJobFactory.java:78)
+        at org.eclipse.scout.rt.server.ServerJob.runTransactionWrapper(ServerJob.java:222)
+        at org.eclipse.scout.rt.server.ServerJob.access$0(ServerJob.java:206)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:177)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:1)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at javax.security.auth.Subject.doAs(Subject.java:422)
+        at org.eclipse.scout.rt.server.ServerJob.run(ServerJob.java:172)
+        at org.eclipse.scout.commons.job.JobEx.runNow(JobEx.java:51)
+        at org.eclipse.scout.rt.server.ServerJob.runNow(ServerJob.java:164)
+        at ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsBaseService.syncItems(LcmRestSyncItemsBaseService.java:371)
+        at ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsBaseService.executeSyncItems(LcmRestSyncItemsBaseService.java:327)
+        at ch.local.crm.server.interfaces.restsync.LcmRestSyncItemsJob.execRun(LcmRestSyncItemsJob.java:38)
+        at com.bsiag.crm.server.core.scheduler.jobs.AbstractJob.run(AbstractJob.java:218)
+        at com.bsiag.crm.server.core.scheduler.SchedulerBaseService$RunJobRunnable$1.run(SchedulerBaseService.java:1613)
+        at com.bsiag.crm.server.core.domain.DefaultSuperUserJobFactory$1.runTransaction(DefaultSuperUserJobFactory.java:78)
+        at org.eclipse.scout.rt.server.ServerJob.runTransactionWrapper(ServerJob.java:222)
+        at org.eclipse.scout.rt.server.ServerJob.access$0(ServerJob.java:206)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:177)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:1)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at javax.security.auth.Subject.doAs(Subject.java:422)
+        at org.eclipse.scout.rt.server.ServerJob.run(ServerJob.java:172)
+        at org.eclipse.scout.commons.job.JobEx.runNow(JobEx.java:51)
+        at org.eclipse.scout.rt.server.ServerJob.runNow(ServerJob.java:164)
+        at com.bsiag.crm.server.core.scheduler.SchedulerBaseService$RunJobRunnable.doRun(SchedulerBaseService.java:1616)
+        at com.bsiag.crm.server.core.scheduler.SchedulerBaseService$RunJobRunnable.run(SchedulerBaseService.java:1516)
+        at com.bsiag.crm.server.core.domain.DefaultSuperUserJobFactory$1.runTransaction(DefaultSuperUserJobFactory.java:78)
+        at org.eclipse.scout.rt.server.ServerJob.runTransactionWrapper(ServerJob.java:222)
+        at org.eclipse.scout.rt.server.ServerJob.access$0(ServerJob.java:206)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:177)
+        at org.eclipse.scout.rt.server.ServerJob$1.run(ServerJob.java:1)
+[tomcat@cl01s560 bsicrm_log]$ LcmRestSyncItemsBaseService.java:334
+
+
+Gruss Röbi

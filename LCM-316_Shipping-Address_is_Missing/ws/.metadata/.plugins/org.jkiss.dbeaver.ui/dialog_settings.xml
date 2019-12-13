@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="DBeaver.FilterValueEditMenu">
+		<item key="DIALOG_WIDTH" value="438"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="417"/>
+		<item key="DIALOG_X_ORIGIN" value="758"/>
+		<item key="DIALOG_Y_ORIGIN" value="710"/>
+	</section>
+	<section name="DriverDownload">
+	</section>
+	<section name="DBeaver.SelectDataSourceDialog">
+		<item key="DIALOG_WIDTH" value="274"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="687"/>
+		<item key="DIALOG_X_ORIGIN" value="529"/>
+		<item key="DIALOG_Y_ORIGIN" value="23"/>
+	</section>
+	<section name="DBeaver.EnterNameDialog">
+		<item key="DIALOG_WIDTH" value="228"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="151"/>
+		<item key="DIALOG_X_ORIGIN" value="398"/>
+		<item key="DIALOG_Y_ORIGIN" value="284"/>
+	</section>
+	<section name="DBeaver.SelectObjectDialog.SchemaSelector">
+		<item key="DIALOG_WIDTH" value="338"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="365"/>
+		<item key="DIALOG_X_ORIGIN" value="497"/>
+		<item key="DIALOG_Y_ORIGIN" value="277"/>
+	</section>
+	<section name="DBeaver.StandardErrorDialog">
+		<item key="DIALOG_WIDTH" value="496"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="194"/>
+		<item key="showDetails" value="false"/>
+		<item key="DIALOG_X_ORIGIN" value="321"/>
+		<item key="DIALOG_Y_ORIGIN" value="255"/>
+	</section>
+	<section name="DBeaver.DriverEditDialog">
+		<item key="DIALOG_WIDTH" value="521"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="622"/>
+		<item key="DIALOG_X_ORIGIN" value="0"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+	</section>
+	<section name="AdvanceCopySettings">
+		<item key="copyHeader" value="true"/>
+		<item key="rowDelimiter" value="&#x0A;"/>
+		<item key="quoteCells" value="true"/>
+		<item key="forceQuotes" value="false"/>
+		<item key="delimiter" value="&#x09;"/>
+		<item key="copyRows" value="false"/>
+		<item key="format" value="UI"/>
+		<item key="quoteString" value="&quot;"/>
+	</section>
+	<section name="DBeaver.DriverDownloadDialog">
+		<item key="DIALOG_WIDTH" value="533"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="471"/>
+		<item key="DIALOG_X_ORIGIN" value="0"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+	</section>
+	<section name="DBeaver.QM.LogViewer">
+	</section>
+	<section name="DBeaver.DriverTabbedViewer">
+	</section>
+	<section name="ResultSetViewer">
+		<section name="presentations">
+			<section name="spreadsheet">
+				<item key="enabledPanelIds" value="value-view"/>
+				<item key="panelsVisible" value="false"/>
+				<item key="verticalLayout" value="false"/>
+				<item key="panelRatio" value="300"/>
+				<item key="activePanelId" value="value-view"/>
+			</section>
+		</section>
+		<section name="ErrorPresentation">
+			<item key="errorWidth" value="457:534"/>
+		</section>
+	</section>
+	<section name="DBeaver.FilterSettingsDialog">
+		<item key="DIALOG_WIDTH" value="270"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="511"/>
+		<item key="DIALOG_X_ORIGIN" value="531"/>
+		<item key="DIALOG_Y_ORIGIN" value="180"/>
+	</section>
+	<section name="DBeaver.EditConnectionDialog">
+		<item key="DIALOG_X_ORIGIN" value="163"/>
+		<item key="DIALOG_Y_ORIGIN" value="47"/>
+		<item key="DIALOG_WIDTH" value="1554"/>
+		<item key="DIALOG_HEIGHT" value="661"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

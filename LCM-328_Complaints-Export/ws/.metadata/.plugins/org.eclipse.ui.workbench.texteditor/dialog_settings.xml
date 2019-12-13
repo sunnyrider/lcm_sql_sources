@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="lcm_accounts_samba" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="pobox_address_nr"/>
+			<item value="lcm_accounts_samba"/>
+			<item value="lcm_accounts_nx"/>
+			<item value="kuba_data"/>
+			<item value="3500 characters from"/>
+			<item value="4000 characters from"/>
+			<item value="END case_reason,"/>
+			<item value="UPPER(uc_cp_cat.text) "/>
+			<item value="reason"/>
+			<item value="record"/>
+			<item value="COMPLAINT_CATEGORY_UID"/>
+			<item value="GROUP BY"/>
+			<item value="lcm_complaints"/>
+			<item value="lcm_cases"/>
+			<item value="201507020000"/>
+		</list>
+		<list key="replacehistory">
+			<item value="GROUP BY"/>
+			<item value="lcm_complaints"/>
+			<item value="uc_status"/>
+			<item value="prsopen"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="284" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="1430" key="DIALOG_X_ORIGIN"/>
+		<item value="59" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

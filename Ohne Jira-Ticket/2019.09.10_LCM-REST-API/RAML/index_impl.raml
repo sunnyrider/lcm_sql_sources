@@ -1,0 +1,1292 @@
+#%RAML 0.8
+title: LCM REST API
+version: "1.0"
+baseUri: "http://ch.local.crm/rest/v1.0/"
+mediaType:  application/json
+
+securitySchemes:
+  - oauth_2_0:
+      type: OAuth 2.0
+      describedBy:
+        headers:
+          Authorization:
+            description: Bearer token is needed
+            type: string
+      settings:
+        accessTokenUri: https://auth.local.ch
+        authorizationUri: https://auth.local.ch
+
+securedBy: [oauth_2_0]
+
+resourceTypes:
+  - collection: !include resourceTypes/collection.raml
+  - collection-item: !include resourceTypes/collection-item.raml
+  - sub-collection: !include resourceTypes/sub-collection.raml
+  - item-alias: !include resourceTypes/item-alias.raml
+
+traits:
+  - orderable: !include traits/orderable.raml
+  - pageable: !include traits/pageable.raml
+  - hasNotFoundError: !include traits/hasNotFoundError.raml
+  - hasUnauthorizedError: !include ./traits/hasUnauthorizedError.raml
+  - hasInternalServerError: !include ./traits/hasInternalServerError.raml
+  - hasBadRequestError: !include ./traits/hasBadRequestError.raml
+  - translateable: !include ./traits/translateable.raml
+
+
+/customers:
+  type:
+    collection:
+      exampleCollection: 
+
+{
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers?limit=1&offset=0",
+  "next" : "http://127.0.0.1:8080/bsicrmserver/rest/customers?limit=1&offset=1",
+  "offset" : 0,
+  "limit" : 1,
+  "items" : [ {
+    "type" : "person",
+    "id" : "10000000",
+    "name" : "Fischer, Jennifer",
+    "first_name" : "Jennifer",
+    "last_name" : "Fischer",
+    "salutation" : {
+      "id" : 3193,
+      "text" : "Herr"
+    },
+    "customer_quadrant" : {
+      "id" : 130983,
+      "text" : "Potenzial"
+    },
+    "language" : null,
+    "physical_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000000/physical_addresses?limit=50&offset=0"
+    },
+    "electronic_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000000/electronic_addresses?limit=50&offset=0"
+    },
+    "external_ids" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000000/external_ids?limit=50&offset=0"
+    },
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000000"
+  } ]
+}
+
+  get:
+    is: [  pageable ]
+    queryParameters:
+      name:
+        description: case sensitive wildcard filtering for the given value
+      city:
+        description: case sensitive wildcard filtering for the given value
+      zipCode:
+        description: wildcard filtering for the given value
+      phone:
+        description: wildcard filtering support
+        example: phone=04440140*
+      street:
+        description: case sensitive wildcard filtering for the given value
+      onlineEntryId:
+        description: exact search for given online entry id
+      type:
+        enum:
+          - company
+          - person
+      order_by:
+        description: sorting the resultset for the given properties. Multiple properties can be combined with an ","
+          Default sort direction is ascending. If you want descending sort direction just put a "-" in front of the attribute.
+          E.g. "sort_by=[-][attribute name]"
+        enum:
+          - id
+          - name
+          - street
+          - city
+      expand:
+        enum:
+          - contact_persons
+          - physical_addresses
+          - electronic_addresses
+          - advisors
+          - parent_company
+          - child_companies
+          - places
+          - invoices
+          - communications
+          - complaints
+          - cases
+          - leads
+          - contract_statistics
+          - history
+
+  post:
+    description: creates a new customer
+    body:
+      application/json-company:
+        example: 
+{
+  "type": "company",
+  "name":"schlaber",
+  "language": 7771,
+  "physical_addresses":[{
+      "street":{
+          "id":"270271",
+          "language":"DE",
+          "name":"Eichwaldstrasse",
+          "house_no":"3"
+      },
+      "city":{
+        "onrp_no":"3404"
+      },
+      "default": true
+  }],
+  "electronic_addresses":[{
+      "channel":113641,
+      "channel_value":"meine.alte.email@host.domain",
+      "default": true
+  }]
+}
+
+      application/json-person:
+        example:
+{
+    "type": "person",
+    "first_name":"Hai",
+    "last_name": "Fish",
+    "language": 246,
+    "salutation": 3193,
+    "physical_addresses":[{
+        "street":{
+            "id":"270271",
+            "language":"DE",
+            "name":"Eichwaldstrasse",
+            "house_no":"3"
+        },
+        "city":{
+          "onrp_no":"3404"
+        },
+        "default": true
+    }],
+    "electronic_addresses":[{
+        "channel":113641,
+        "channel_value":"meine.alte.email@host.domain",
+        "default": true
+    }]
+}
+
+    responses:
+      201:
+        headers:
+          Location:
+            description: contains the location of the newly created resource
+
+  /{customerId}:
+    type:
+      collection-item:
+        exampleItem: null
+    get:
+      description: |
+        * attribute language is one of the following values ["de", "fr", "en", "it"]
+        * attribute salutation is one of the following values ["mr", "ms", "dear_sir_or_madam"]
+        * external ids contains only ids which are active in the source system
+      queryParameters:
+        expand:
+          enum:
+            - contact_persons
+            - physical_addresses
+            - electronic_addresses
+            - advisors
+            - parent_company
+            - child_companies
+            - places
+            - invoices
+            - communications
+            - complaints
+            - cases
+            - leads
+            - contract_statistics
+          required: false
+      responses:
+       200:
+         body:
+           application/json-company:
+             example:
+{
+  "type" : "company",
+  "id" : "17271811",
+  "name" : "Police cantonale vaudoise",
+  "language" : "fr",
+  "rating" : {
+    "id" : 1205064442,
+    "text" : "A - Umsatz 20'000.01 bis 999'999.99",
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/71070/1205064442"
+  },
+  "variety" : {
+    "id" : 109937,
+    "text" : "Filiale",
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/109934/109937"
+  },
+  "customer_quadrant" : {
+    "id" : 130981,
+    "text" : "local.ch",
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/130979/130981"
+  },
+  "locked" : false,
+  "advisors" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/advisors"
+  },
+  "parent_company" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/parent_company"
+  },
+  "contract_statistics" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/contract_statistics"
+  },
+  "contact_persons" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/contact_persons"
+  },
+  "child_companies" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/child_companies"
+  },
+  "physical_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/physical_addresses"
+  },
+  "default_physical_address" : {
+    "id" : "10702027",
+    "external_id" : {
+      "id" : "1442700",
+      "source_system_uid" : "LTV"
+    },
+    "duplicates" : [ ],
+    "default" : true,
+    "usages" : [ "Invoice", "Contract" ],
+    "additional_line1" : "Direction prévention et communicati",
+    "street" : {
+      "name" : "Route de la Blécherette",
+      "house_no" : "101"
+    },
+    "city" : {
+      "zip" : "1000",
+      "city" : "Lausanne",
+      "onrp_no" : "104",
+      "country" : {
+        "id" : 1001148,
+        "text" : "Schweiz",
+        "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/71078/1001148"
+      },
+      "country_iso" : "CH"
+    },
+    "read_only" : false,
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/physical_addresses/10702027"
+  },
+  "external_ids" : [ {
+    "id" : "1442700",
+    "source_system_uid" : "LTV"
+  }, {
+    "id" : "1001789284",
+    "source_system_uid" : "SD"
+  }, {
+    "id" : "1007499697",
+    "source_system_uid" : "SD"
+  }, {
+    "id" : "1007651648",
+    "source_system_uid" : "SD"
+  }, {
+    "id" : "1001962",
+    "source_system_uid" : "KüBa"
+  } ],
+  "kam" : true,
+  "kam_type": {
+        "id": 157021,
+        "text": "KAM A",
+        "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/157020/157021"
+    },
+  "electronic_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/electronic_addresses"
+  },
+  "invoices" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/invoices"
+  },
+  "places" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/places"
+  },
+  "communications" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/communications"
+  },
+  "complaints" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/complaints"
+  },
+  "cases" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/cases"
+  },
+  "leads" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811/leads"
+  },
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17271811"
+}
+
+           application/json-person:
+             example:
+
+{
+  "type" : "person",
+  "id" : "10000039",
+  "name" : "Roch, Michele",
+  "first_name" : "Michele",
+  "last_name" : "Roch",
+  "salutation" : "dear_sir_or_madam",
+  "customer_quadrant" : {
+    "id" : 130983,
+    "text" : "Potenzial",
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/130979/130983"
+  },
+  "language" : "fr",
+  "physical_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039/physical_addresses"
+  },
+  "default_physical_address" : {
+    "id" : "13287879",
+    "external_id" : {
+      "id" : "1000033943",
+      "source_system_uid" : "SD"
+    },
+    "duplicates" : [ ],
+    "default" : true,
+    "usages" : [ ],
+    "street" : {
+      "name" : "chemin du Nant-Boret",
+      "house_no" : "27"
+    },
+    "city" : {
+      "zip" : "1228",
+      "city" : "Plan-les-Ouates",
+      "onrp_no" : "447",
+      "country" : {
+        "id" : 1001148,
+        "text" : "Schweiz",
+        "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/71078/1001148"
+      },
+      "country_iso" : "CH"
+    },
+    "read_only" : true,
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039/physical_addresses/13287879"
+  },
+  "external_ids" : [ {
+    "id" : "1000033943",
+    "source_system_uid" : "SD"
+  } ],
+  "kam" : false,
+  "electronic_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039/electronic_addresses"
+  },
+  "invoices" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039/invoices"
+  },
+  "places" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039/places"
+  },
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000039"
+}
+
+    post:
+       description: |
+        Updates an existing customer and it's default_physical_address.
+        Beware if attribute onrp_no is set in the default_physical_address, then city and zip are unnecessary and are ignored if they are also set.
+
+        Customer can not be updated if:
+        * it's a samba customer and locked
+        * it's a DSMP customer (if not a KAM customer, CONTM address can be updated)
+
+       body:
+         application/json-company:
+           example:
+{
+  "type": "company",
+  "name": "Surfparadies Hawaii Teuscher Mario",
+  "language": "de",
+  "default_physical_address": {
+    "id": "38649676",
+
+    "street": {
+      "name": "Kappenbühlweg",
+      "house_no": "8"
+    },
+    "city": {
+      "zip": "8049",
+      "city": "Zürich",
+      "onrp_no": "xxxx"
+     }
+    }
+}
+         application/json-person:
+           example:
+{
+  "type": "person",
+  "first_name": "Weber",
+  "last_name": "Ginette",
+  "salutation": "dear_sir_or_madam",
+  "language": "de",
+  "default_physical_address": {
+    "street": {
+      "name": "Breitgartenstrasse",
+      "house_no": "14"
+    },
+    "city": {
+      "zip": "4226",
+      "city": "Breitenbach"
+
+    }
+  }
+ }
+       responses:
+         204:
+
+    /listing_products:
+      description: Display associated listing products
+      type:
+        collection:
+          exampleCollection:
+{
+  "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17569097/listing_products?limit=3&offset=6",
+  "next": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17569097/listing_products?limit=3&offset=9",
+  "previous": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17569097/listing_products?limit=3&offset=3",
+  "offset": 6,
+  "limit": 3,
+  "items": [
+    {
+      "name": "Folgeeintrag ",
+      "type": "2F",
+      "content": "E-Mail * nhfribourg@nh-hotels.com",
+      "level": 1,
+      "evt_start": "2010-04-28",
+      "evt_end": "9999-12-31",
+      "price": "15.65",
+      "sector": "Banquet",
+      "directory_location": "Fribourg",
+      "directory_no": "564",
+      "initial_ad_id": "1043296353",
+      "sector_language": "French"
+    },
+    {
+      "name": "Folgeeintrag ",
+      "type": "2F",
+      "content": "Fax +41 (26) 351 91 92",
+      "level": 1,
+      "evt_start": "1996-11-02",
+      "evt_end": "9999-12-31",
+      "price": "15.65",
+      "sector": "Banquet",
+      "directory_location": "Fribourg",
+      "directory_no": "564",
+      "initial_ad_id": "1010282383",
+      "sector_language": "French"
+    },
+    {
+      "name": "Grundeintrag",
+      "type": "2G",
+      "content": "<b>NH Fribourg NH Hoteles Switzerland GmbH</b><br/>Grand-Places 14<br/>1700 Fribourg<br/>+41 (26) 351 91 91",
+      "level": 0,
+      "evt_start": "1996-11-02",
+      "evt_end": "9999-12-31",
+      "price": "21.20",
+      "sector": "Hôtel",
+      "directory_location": "Fribourg",
+      "directory_no": "564",
+      "initial_ad_id": "1010282392",
+      "sector_language": "French"
+    }
+  ]
+}
+      get:
+        description: Get a list of associated listing products
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /places:
+      description: Display associated places
+      type:
+        collection:
+          exampleCollection:
+{
+  "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/16773896/places",
+  "offset": 0,
+  "limit": 50,
+  "items": [
+    {
+      "href": "http://storage.internal-local.ch/v2/places/GMv21tkh3U4pTYa3u71WXw"
+    }
+  ]
+}
+
+      get:
+        description: Get a list of associated places
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /history:
+      description: Display old customer ids
+      type:
+        collection:
+          exampleCollection:
+{
+  "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17231656/history",
+  "offset": 0,
+  "limit": 20,
+  "items": [
+    "17418639",
+    "16907125"
+  ]
+}
+      get:
+        description: Get a list of old customer ids
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+
+    /physical_addresses:
+      description: Display associated physical addresses
+      type:
+        collection:
+          exampleCollection:
+[ {
+  "id" : "36900877",
+  "external_id" : {
+    "id" : "1003236066",
+    "source_system_uid" : "SD"
+  },
+  "duplicates" : [ ],
+  "default" : false,
+  "usages" : [ ],
+  "additional_line1" : "I Viaggi dell'Atlante SA",
+  "additional_line2" : null,
+  "street" : {
+    "id" : null,
+    "language" : null,
+    "name" : "via E. Bossi",
+    "house_no" : "12c"
+  },
+  "city" : {
+    "zip" : "6830",
+    "city" : "Chiasso",
+    "onrp_no" : "3783",
+    "country" : "Schweiz",
+    "country_iso" : "CH"
+  }
+}, {
+  "id" : "40569488",
+  "external_id" : {
+    "id" : "1003236066",
+    "source_system_uid" : "SD"
+  },
+  "duplicates" : [ ],
+  "default" : false,
+  "usages" : [ "Correspondence" ],
+  "additional_line1" : "Atlantic Consulting Sagl",
+  "additional_line2" : null,
+  "street" : {
+    "id" : null,
+    "language" : null,
+    "name" : "via E. Bossi",
+    "house_no" : "12c"
+  },
+  "city" : {
+    "zip" : "6830",
+    "city" : "Chiasso",
+    "onrp_no" : "3783",
+    "country" : "Schweiz",
+    "country_iso" : "CH"
+  },
+  "read_only": false
+}, {
+  "id" : "53332029",
+  "external_id" : {
+    "id" : "1003236066",
+    "source_system_uid" : "SD"
+  },
+  "duplicates" : [ ],
+  "default" : false,
+  "usages" : [ "Invoice", "Contract" ],
+  "additional_line1" : null,
+  "additional_line2" : null,
+  "street" : {
+    "id" : null,
+    "language" : null,
+    "name" : "via E. Bossi",
+    "house_no" : "12c"
+  },
+  "city" : {
+    "zip" : "6830",
+    "city" : "Chiasso",
+    "onrp_no" : "3783",
+    "country" : "Schweiz",
+    "country_iso" : "CH"
+  }
+}, {
+  "id" : "55890944",
+  "external_id" : {
+    "id" : "1156411",
+    "source_system_uid" : "LTV"
+  },
+  "duplicates" : [ ],
+  "default" : true,
+  "usages" : [ "Invoice", "Contract" ],
+  "additional_line1" : null,
+  "additional_line2" : null,
+  "street" : {
+    "id" : null,
+    "language" : null,
+    "name" : "via Emilio Bossi",
+    "house_no" : "12"
+  },
+  "city" : {
+    "zip" : "6830",
+    "city" : "Chiasso",
+    "onrp_no" : "3783",
+    "country" : "Schweiz",
+    "country_iso" : "CH"
+  },
+  "read_only": false
+} ]
+      get:
+        description: Get a list of associated physical addresses. PCA and CONTM addresses may not be displayed according to the rules implemented in LCM. Only active addresses can be retrieved
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+      post:
+        description: creates a new physical address
+        body:
+            example:
+{
+   "additional_line2":"addline2",
+   "street":{
+      "id":"2550",
+      "name":"Route de ladida",
+      "house_no":"1b",
+      "language":"FR"
+   },
+   "additional_line1":"addline1",
+   "city":{
+      "onrp_no":"xxxx"
+   }
+}
+        responses:
+          204:
+
+      /{addressNo}:
+        description: Display associated physical address
+        type:
+          collection:
+            exampleCollection:
+{
+  "id" : "48408209",
+  "external_id" : {
+    "id" : "1000033943",
+    "source_system_uid" : "LTV"
+  },
+  "duplicates" : [ ],
+  "default" : true,
+  "usages" : [ ],
+  "additional_line1" : null,
+  "additional_line2" : null,
+  "street" : {
+    "id" : null,
+    "language" : null,
+    "name" : "chemin du Nant-Boret",
+    "house_no" : "27"
+  },
+  "city" : {
+    "zip" : "1228",
+    "city" : "Plan-les-Ouates",
+    "onrp_no" : "447",
+    "country" : {
+      "id" : 1001148,
+      "text" : "Schweiz"
+    },
+    "country_iso" : "CH"
+  },
+  "read_only" : false,
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000039/physical_addresses/48408209"
+}
+        get:
+          description: Get the physical address for the given addressNo.
+          is: [ hasInternalServerError, hasUnauthorizedError]
+          responses:
+            200:
+            307:
+              description: if another address is duplicate and master
+            404:
+              description: if the address does no longer exist (e.g. was deleted in source system)
+        post:
+          description: Updates the address. Beware if attribute onrp_no is set, then city and zip are unnecessary and are ignored if they are also set.
+          body:
+              example:
+{
+   "additional_line2":"addline2",
+   "street":{
+      "name":"Route de ladida",
+      "house_no":"1b"
+   },
+    "po_box": {
+      "po_box_name": {
+         "id": 1500522202,
+         "text": "Case Postale"
+       },
+      "po_box_number": "38"
+   },
+   "additional_line1":"addline1",
+   "city":{
+      "onrp_no":"xxxx"
+   }
+}
+  OR
+{
+   "additional_line2":"addline2",
+   "street":{
+      "name":"Route de ladida",
+      "house_no":"1b"
+   },
+   "additional_line1":"addline1",
+   "city":{
+       "zip": "8055",
+       "city": "Zürich"
+   }
+}
+          responses:
+            204:
+
+
+    /electronic_addresses:
+      description: Display associated electronic addresses. Only active addresses are displayed
+      type:
+        collection:
+          exampleCollection:
+
+[ {
+  "id" : "44411547",
+  "external_id" : {
+    "id" : "1003236066",
+    "source_system_uid" : "SD"
+  },
+  "duplicates" : [ ],
+  "default" : false,
+  "usages" : [ "Invoice", "Contract" ],
+  "channel" : "phone",
+  "channel_value" : "+41916820137"
+}, {
+  "id" : "44890129",
+  "external_id" : {
+    "id" : "1156411",
+    "source_system_uid" : "LTV"
+  },
+  "duplicates" : [ {
+    "id" : "43136775",
+    "external_id" : {
+      "id" : "1003236066",
+      "source_system_uid" : "SD"
+    }
+  } ],
+  "default" : true,
+  "usages" : [ "Invoice", "Contract" ],
+  "channel" : "phone",
+  "channel_value" : "+41916822363"
+}, {
+  "id" : "45534444",
+  "external_id" : {
+    "id" : "1156411",
+    "source_system_uid" : "LTV"
+  },
+  "duplicates" : [ {
+    "id" : "36126886",
+    "external_id" : {
+      "id" : "1003236066",
+      "source_system_uid" : "SD"
+    }
+  } ],
+  "default" : true,
+  "usages" : [ "Invoice", "Contract" ],
+  "channel" : "email",
+  "channel_value" : "info@atlanteviaggi.com"
+}, {
+  "id" : "41866273",
+  "external_id" : {
+    "id" : "1156411",
+    "source_system_uid" : "LTV"
+  },
+  "duplicates" : [ {
+    "id" : "41706897",
+    "external_id" : {
+      "id" : "1003236066",
+      "source_system_uid" : "SD"
+    }
+  } ],
+  "default" : true,
+  "usages" : [ "Invoice", "Contract" ],
+  "channel" : "fax",
+  "channel_value" : "+41916821988"
+} ]
+      get:
+        description: Get a list of associated electronic addresses
+        is: [ hasInternalServerError, hasUnauthorizedError]
+        responses:
+          200:
+      post:
+        description: creates a new electronic address
+        body:
+            example: 
+{
+  "channel" : "mobile",
+  "channel_value" : "+41916820xxx",
+  "referenced_company_no" : "1234567890"
+}
+        responses:
+          204:
+      delete:
+        description: deletes an existing electronic address
+        responses:
+          204:
+            description: successfully delete electronic address
+      /validation:
+        description: validates a new electronic address
+        post:
+          description: validates a new electronic address
+          body:
+              example:
+{
+  "channel" : "mobile",
+  "channel_value" : "+41916820xxx",
+  "referenced_company_no" : "1234567890"
+}
+
+          responses:
+            204:
+            400:
+              body:
+                example:
+{
+  "status": 400,
+  "message": "There was an error validating the given data. See field errors for details.",
+  "field_errors": [
+    {
+      "code": "INVALID_PROPERTY_VALUE",
+      "path": [
+        "channel_value"
+      ],
+      "message": "\"+4asdfasdfasdfasdfasdfasdfasdfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1916820xxx\" ist eine ungültige Telefonnummer"
+    }
+  ]
+}
+      /{addressNo}:
+        description: Display associated electronic address
+        type:
+          collection:
+            exampleCollection:
+{
+  "id" : "48330301",
+  "external_id" : {
+    "id" : "1000033943",
+    "source_system_uid" : "SD"
+  },
+  "duplicates" : [ ],
+  "default" : true,
+  "usages" : [ ],
+  "channel" : "mobile",
+  "channel_value" : "+4122794aaa",
+  "referenced_company_no" : "1234567890",
+  "read_only" : true,
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10000039/electronic_addresses/48330301"
+}
+        get:
+          description: |
+            Get the electronic address for the given addressNo
+            * Attribute channel is one of the following values ["email","fax","mobile","phone","www"]
+          is: [ hasInternalServerError, hasUnauthorizedError]
+          responses:
+            200:
+            307:
+              description: if another address is duplicate and master
+            404:
+              description: if the address does no longer exist (e.g. was deleted in source system)
+        post:
+          description: updates the address
+          body:
+              example:
+{
+  "channel_value" : "+41916820xxx",
+  "referenced_company_no" : "1234567890"
+
+}
+          responses:
+            204:
+        /validation:
+          description: validates an electronic address update
+          post:
+            description: validates an electronic address update
+            body:
+                example:
+{
+  "channel" : "mobile",
+  "channel_value" : "+41916820xxx",
+  "referenced_company_no" : "1234567890"
+}
+            responses:
+              204:
+              400:
+                body:
+                  example: 
+{
+  "status": 400,
+  "message": "There was an error validating the given data. See field errors for details.",
+  "field_errors": [
+    {
+      "code": "INVALID_PROPERTY_VALUE",
+      "path": [
+        "channel_value"
+      ],
+      "message": "\"+4asdfasdfasdfasdfasdfasdfasdfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1916820xxx\" ist eine ungültige Telefonnummer"
+    }
+  ]
+}
+
+    /contact_persons:
+      description: Display associated contact persons
+      type:
+        sub-collection:
+          exampleCollection:
+
+{
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/17293355/contact_persons?limit=2",
+  "next" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/17293355/contact_persons?limit=2&offset=2",
+  "offset" : 0,
+  "limit" : 2,
+  "items" : [ {
+    "type" : "person",
+    "id" : "10004998",
+    "name" : "Grieder",
+    "first_name" : null,
+    "last_name" : "Grieder",
+    "salutation" : {
+      "id" : 3193,
+      "text" : "Herr"
+    },
+    "customer_quadrant" : {
+      "id" : 130983,
+      "text" : "Potenzial"
+    },
+    "language" : {
+      "id" : 246,
+      "text" : "Deutsch"
+    },
+    "physical_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/physical_addresses"
+    },
+    "electronic_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/electronic_addresses"
+    },
+    "external_ids" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/external_ids"
+    },
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998"
+  }, {
+    "type" : "person",
+    "id" : "18073028",
+    "name" : "Wayne, Bruce",
+    "first_name" : "Bruce",
+    "last_name" : "Wayne",
+    "salutation" : {
+      "id" : 3193,
+      "text" : "Herr"
+    },
+    "customer_quadrant" : {
+      "id" : 130983,
+      "text" : "Potenzial"
+    },
+    "language" : {
+      "id" : 7771,
+      "text" : "Italienisch"
+    },
+    "physical_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/18073028/physical_addresses"
+    },
+    "electronic_addresses" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/18073028/electronic_addresses"
+    },
+    "external_ids" : {
+      "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/18073028/external_ids"
+    },
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/18073028"
+  } ]
+}
+
+      post:
+        description: Create an new contact person
+        body:
+          application/json:
+            example:
+{
+  "first_name": "Bruce",
+  "last_name":"Wayne",
+  "language": "de",
+  "salutation": "mr"
+}
+
+        responses:
+          204:
+
+      /{contact_person_no}:
+        type:
+          collection-item:
+            exampleItem: 
+
+{
+  "type" : "person",
+  "id" : "10004998",
+  "name" : "Grieder",
+  "first_name" : null,
+  "last_name" : "Grieder",
+  "salutation" : {
+    "id" : 3193,
+    "text" : "Herr"
+  },
+  "customer_quadrant" : {
+    "id" : 130983,
+    "text" : "Potenzial"
+  },
+  "language" : {
+    "id" : 246,
+    "text" : "Deutsch"
+  },
+  "physical_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/physical_addresses"
+  },
+  "electronic_addresses" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/electronic_addresses"
+  },
+  "external_ids" : {
+    "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998/external_ids"
+  },
+  "href" : "http://127.0.0.1:8080/bsicrmserver/rest/customers/10004998"
+}
+
+        post:
+          description: updates contact person
+          body:
+            application/json:
+              example: 
+{
+  "first_name": "Fritzel",
+  "last_name":"Schnitzel",
+  "language": "de",
+  "salutation": "mr"
+}
+        delete:
+            description: deletes an existing contact person
+            responses:
+                204:
+                    description: successfully delete contact person
+
+    /communications:
+      description: Get list of associated communications
+      type:
+        sub-collection:
+          exampleCollection:
+{
+  "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17319055/communications",
+  "offset": 0,
+  "limit": 20,
+  "items": [
+    {
+      "channel": "letter",
+      "subject": "Lettera di conferma",
+      "status": {
+        "id": 3513,
+        "text": "Stattgefunden",
+        "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/75955/3513"
+      },
+      "responsible": {
+        "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000517"
+      },
+      "evt_start": "16-02-2010",
+      "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17319055/communications/380EBA7BE531771FE053E610A60AF5E6"
+    }  ]
+}
+
+      post:
+        description: Creates a new communication
+        body:
+          example: 
+{
+    "type" : "appointment",
+    "visit_date"  : "2016-10-28T11:30:58+02:00",
+    "visit_report_id" : "besuchsreportid123",
+    "contract" : true,
+    "origin" : "nationalreport",
+    "contact_person_complex_no" : "10391436"
+}
+        responses:
+          201:
+            description: successfully created a new customer advisor relation
+
+      /{communication_no}:
+        type:
+          collection-item:
+            exampleItem:
+{
+  "channel": "letter",
+  "subject": "Lettera di conferma",
+  "status": {
+    "id": 3513,
+    "text": "Stattgefunden",
+    "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/codes/75955/3513"
+  },
+  "responsible": {
+    "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/10000517"
+  },
+  "evt_start": "16-02-2010",
+  "href": "http://127.0.0.1:8080/bsicrmserver/rest/v1/customers/17319055/communications/380EBA7BE531771FE053E610A60AF5E6"
+}
+    /complaints:
+      description: Get list of associated complaints
+      type:
+        sub-collection:
+          exampleCollection: !include complaint/complaints.json
+      /{complaint_no}:
+        type:
+          collection-item:
+            exampleItem: !include complaint/complaint.json
+
+    /cases:
+      description: Get list of associated complaints
+      type:
+        sub-collection:
+          exampleCollection: !include case/cases.json
+      /{case_no}:
+        type:
+          collection-item:
+            exampleItem: !include case/case.json
+
+    /leads:
+      description: Get list of associated leads
+      type:
+        sub-collection:
+          exampleCollection: !include lead/leads.json
+      /{lead_no}:
+        type:
+          collection-item:
+            exampleItem: !include lead/lead.json
+
+    /contract_statistics:
+      description: Get contract statistics of advertising products
+      type:
+        sub-collection:
+          exampleCollection: !include contractStatistics/contract_statistics.json
+
+    /feedback:
+      description: Get feedback item, returns HTTP 404(Not Found) if no feedback communication for this customer has been sent yet
+      type:
+        sub-collection:
+          exampleCollection: !include feedback/feedback.json
+      get:
+        responses:
+          404:
+            body:
+             example: !include errors/hasFeedbackNotFoundError.json
+
+    /parent_company:
+      description: Get parent company item
+      type:
+        collection-item:
+          exampleItem: !include parentCompany/parent_company.json
+      get:
+        description: Get parent company item
+
+    /child_companies:
+      description: Get list of child companies
+      type:
+        sub-collection:
+          exampleCollection : !include childCompanies/child_companies.json
+
+    /advisors:
+      description: Get list of advisors
+      type:
+        sub-collection:
+          exampleCollection : !include advisor/advisors.json
+      post:
+        description: Creates a new customer advisor relation. It's not allowed to have multiple advisors of the same type
+        body:
+          example: !include advisor/advisor_create.json
+        responses:
+          201:
+            description: successfully created a new customer advisor relation
+
+      /{advisorTypeNo}:
+        type:
+          collection-item:
+            exampleItem: !include advisor/advisor.json
+        get:
+          description: |
+            * Attribute advisor_type is one of the following attributes ["fieldsales", "telesales", "telesales_spoc", "kam"]
+        post:
+          description: update customer advisor relation. If the User is not part of the sales structure spoc must be set true.
+          body:
+            example: !include advisor/advisor_update.json
+          responses:
+            204:
+              description: successfully updated a customer advisor relation
+
+        delete:
+          description: deletes an existing customer advisor relation. It's not possible to delete the fieldsales advisor.
+          responses:
+            204:
+              description: successfully delete customer advisor relation
+
+
+
+    /invoices:
+      description: Get list of invoices
+
+      type:
+        sub-collection:
+          exampleCollection : !include invoice/invoices.json
+
+      /{invoiceId}:
+        type:
+          collection-item:
+            exampleItem: !include invoice/invoice.json
+        get:
+          description: |
+            * attribute origin can be one of the following values ["search","dsmp","samba"]
+
+  /sd/{extNo}:
+    type:
+      item-alias:
+
+  /ltv/{extNo}:
+    type:
+        item-alias:
+
+/codes/{codeTypeId}:
+  type:
+    collection:
+      exampleCollection: !include codes/codes.71070.json
+  is: [ { orderable: {fieldsList : "text"} }]
+
+/communications:
+  post:
+    description: creates a new communication
+    body:
+      example: !include communication/email_communication_create.json
+    headers:
+      X-CrmUsername:
+        description: Contains crm username
+        required: true
+    responses:
+      201:
+        description: successfully created a new communication
+
+/physical_addresses/{addressId}:
+  type:
+      item-alias:
+
+/electronic_addresses/{addressId}:
+  type:
+      item-alias:

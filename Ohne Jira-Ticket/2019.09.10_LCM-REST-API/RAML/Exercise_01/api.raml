@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: test
+resourceTypes:
+  myResourceType:
+    get:
+      body:
+        application/json:
+          type:
+            properties:
+              givenName: string
+              familyName: string
+          examples: <<myParam>>
+
+/end:
+  type:
+    myResourceType:
+      myParam: !include fragment.raml

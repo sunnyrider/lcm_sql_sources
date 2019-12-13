@@ -1,0 +1,72 @@
+WITH preselect AS
+(
+	SELECT cse.*,
+		CMP.COMPANY_NO,
+		CMP.DISPLAY_NAME company_display_name
+	FROM BSI_CASE cse
+		INNER JOIN BSI_COMPANY cmp
+		ON CMP.COMPANY_NR = CSE.X_COMPANY_NR
+	INNER JOIN BSI_COMMUNICATION cmc
+	ON CMC.CASE_FRAME_NR = CSE.CASE_FRAME_NR
+	WHERE CSE.STATUS_UID IN (75959)
+	AND CSE.X_COMPANY_NR <> 0
+	AND CMP.IS_ACTIVE = 1
+	AND CSE.CASE_FRAME_NR <> 0
+	AND CSE.EVT_START > TO_DATE('31.12.2014', 'dd.mm.yyyy')
+	ORDER BY CSE.X_COMPANY_NR, CSE.CASE_NO
+)
+SELECT
+	to_char(CSE.EVT_END, 'dd.mm.yyyy') closed_date,
+	CSE.EMAIL_ADDRESS contact_email,
+	CSE.FAX_NO contact_fax,
+	CSE.PERSON_NR LCM_Contact_Number,
+	CSE.PHONE_NO contact_mobile,
+	CSE.PHONE_NO contact_phone,
+	to_char(CSE.EVT_START, 'dd.mm.yyyy') created_date,
+	1 closed,
+--	CMC.ORIGIN_UID,
+	uc_origin.TEXT case_origin,
+--	CSE.PROCESS_UID,
+	'LCM' case_reason,
+	CASE WHEN uc_process.text = 'Beschwerde' THEN
+		uc_process.text
+	ELSE
+		'other'
+	END record_type,
+	'Closed' Status,
+	CMC.DISPLAY_NAME subject,
+	CSE.COMPANY_NO company,
+	CSE.company_display_name description,
+	CSE.CASE_NO,
+	CASE WHEN prsopen.FIRST_NAME IS NOT NULL THEN 
+		prsopen.FIRST_NAME || ' ' || prsopen.LAST_NAME
+	WHEN prsopen.LAST_NAME IS NULL THEN
+		''
+	ELSE 
+		prsopen.LAST_NAME
+	END LCM_User_opened_Case,
+	CASE WHEN prsclose.FIRST_NAME IS NOT NULL THEN 
+		prsclose.FIRST_NAME || ' ' || prsclose.LAST_NAME
+	WHEN prsclose.LAST_NAME IS NULL THEN
+		''
+	ELSE 
+		prsclose.LAST_NAME
+	END LCM_User_closed_CASE,
+	CASE WHEN CMC.TEXT_LOB IS NOT NULL THEN 
+		REPLACE(dbms_lob.substr(CMC.TEXT_LOB, 4000, 1), '\t', ' ') 
+	ELSE 
+		''
+	END LCM_Communcation_Text,
+	CMC.X_COMMUNICATION_EXT_KEY LCM_Document_link
+FROM preselect cse
+	INNER JOIN BSI_COMMUNICATION cmc
+	    INNER JOIN BSI_UC_TEXT uc_origin ON uc_origin.UC_UID = CMC.ORIGIN_UID AND uc_origin.LANGUAGE_UID = 246
+	ON CMC.CASE_FRAME_NR = CSE.CASE_FRAME_NR
+--	ON CMC.COMPANY_NR = CSE.X_COMPANY_NR
+    INNER JOIN BSI_PERSON prsopen ON prsopen.PERSON_NR = CSE.CREATE_USER_NR
+    INNER JOIN BSI_PERSON prsclose ON prsclose.PERSON_NR = CSE.X_CLOSE_USER_NR
+	INNER JOIN BSI_UC_TEXT uc_process ON uc_process.UC_UID = CSE.PROCESS_UID AND uc_process.LANGUAGE_UID = 246
+WHERE CMC.ORIGIN_UID NOT IN (105356, 143891)  -- 105356	Marketing, 143891	National Report
+AND CMC.EVT_START > TO_DATE('31.12.2014', 'dd.mm.yyyy')
+AND CMC.CASE_FRAME_NR = CSE.CASE_FRAME_NR
+;

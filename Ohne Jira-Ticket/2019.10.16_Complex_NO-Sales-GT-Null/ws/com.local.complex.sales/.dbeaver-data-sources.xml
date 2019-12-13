@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="oracle_thin-16ded79b057-107d967dce39ce68" provider="oracle" driver="oracle_thin" name="PROD" save-password="true" read-only="false">
+		<connection server="" database="" url="jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST = (FAILOVER = YES)(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-2.ltvintra.ltv.ch)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = ora-dbs-4.ltvintra.ltv.ch)(PORT = 1521)))(CONNECT_DATA = (SERVICE_NAME = CRMPROD_ACTIVE.ltvintra.ltv.ch)(FAILOVER_MODE = (TYPE = SELECT) (METHOD = BASIC)(RETRIES = 20)(DELAY = 15))))" user="bsi_user" password="EFQ1eHNpdU8SJmbf" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="CUSTOM"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>
