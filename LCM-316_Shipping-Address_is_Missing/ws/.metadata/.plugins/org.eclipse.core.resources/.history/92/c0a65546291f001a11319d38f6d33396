@@ -110,32 +110,32 @@ SELECT DISTINCT ADRU.USAGE_UID FROM bsi_address_usage adru
 --142513		Inhaber (KüBa)
 
 
-SELECT /*+ ordered use_hash(am au ba city) full(am) full(au) full(ba) full(city) */
-	am.ext_join_nr, 
-	am.type_uid, -- = 108365
-	ba.item_key0_nr,
-	ba.postal_display_street, 
-	city.zip_code, 
-	city.city, 
-	city.country_uid, 
-	city.state, 
-	ba.postal_additional_line1, 
-	ba.postal_additional_line2, 
-	ba.address_nr, 
-	ba.city_nr
-FROM bsicrm.bsi_x_address_mapping am 
-	JOIN bsicrm.bsi_address_usage au on au.address_nr = am.address_nr 
-		AND au.usage_uid in (121625,121810)  -- 121625 Rechnungsadresse WP / 121810 Rechnungsadresse EP      
-	JOIN bsicrm.bsi_address ba on ba.address_nr = am.address_nr 
-	JOIN bsicrm.bsi_city city on city.city_nr = ba.city_nr
-WHERE ba.channel_uid = 113688    -- Anschrift
--- 2315:	Hauptadresse
--- 108363:	Korrespondenz mutiert durch User ODER Korrespondenzadresse EP
--- 108240:	Hauptadresse (Postfach)
--- 108364:	Korrespondenz mutiert durch User ODER Korrespondenzadresse EP (Postfach)
-AND am.type_uid not in (2315,108363,108240,108364) 
-AND (
-	au.usage_uid = 121810  -- Rechnungsadresse EP
-	or au.usage_uid = 121625 
-	AND (ba.postal_display_street is not null or ba.postal_po_box_global_text_nr = 0)
-) -- Rechnungsadresse WP
+		SELECT /*+ ordered use_hash(am au ba city) full(am) full(au) full(ba) full(city) */
+			am.ext_join_nr, 
+			am.type_uid, -- = 108365
+			ba.item_key0_nr,
+			ba.postal_display_street, 
+			city.zip_code, 
+			city.city, 
+			city.country_uid, 
+			city.state, 
+			ba.postal_additional_line1, 
+			ba.postal_additional_line2, 
+			ba.address_nr, 
+			ba.city_nr
+		FROM bsicrm.bsi_x_address_mapping am 
+			JOIN bsicrm.bsi_address_usage au on au.address_nr = am.address_nr 
+				AND au.usage_uid in (121625,121810)  -- 121625 Rechnungsadresse WP / 121810 Rechnungsadresse EP      
+			JOIN bsicrm.bsi_address ba on ba.address_nr = am.address_nr 
+			JOIN bsicrm.bsi_city city on city.city_nr = ba.city_nr
+		WHERE ba.channel_uid = 113688    -- Anschrift
+		-- 2315:	Hauptadresse
+		-- 108363:	Korrespondenz mutiert durch User ODER Korrespondenzadresse EP
+		-- 108240:	Hauptadresse (Postfach)
+		-- 108364:	Korrespondenz mutiert durch User ODER Korrespondenzadresse EP (Postfach)
+		AND am.type_uid not in (2315,108363,108240,108364) 
+		AND (
+			au.usage_uid = 121810  -- Rechnungsadresse EP
+			or au.usage_uid = 121625 
+			AND (ba.postal_display_street is not null or ba.postal_po_box_global_text_nr = 0)
+		) -- Rechnungsadresse WP
