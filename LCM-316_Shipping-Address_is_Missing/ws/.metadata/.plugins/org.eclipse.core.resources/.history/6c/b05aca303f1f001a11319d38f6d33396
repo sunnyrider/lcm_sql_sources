@@ -1,5 +1,3 @@
--- Commit von Aenderung in SAMBA Code
---
 WITH preselect AS
 (
 	SELECT /*+ ordered use_hash(CSE CMC) full(CSE) full(CMC) */
